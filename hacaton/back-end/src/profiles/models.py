@@ -14,6 +14,8 @@ class Profile(models.Model):
     secondname = models.CharField(max_length=100)
     therename = models.CharField(max_length=100)
     type = models.ForeignKey(TypeUser, on_delete=models.CASCADE)
+    class Meta:
+        abstract = True
 
 class Student(Profile):
     university = models.ForeignKey(University, on_delete=models.CASCADE)
