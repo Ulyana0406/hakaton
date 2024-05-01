@@ -18,6 +18,10 @@ services:
     image: postgres
     #volumes:
       #- ./persistentdata/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: "dbhac"
+      POSTGRES_USER: "hacuser"
+      POSTGRES_PASSWORD: "hacpass"
     env_file: ./postgresql/.env
     ports:
       - 5432:5432
