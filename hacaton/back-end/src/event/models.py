@@ -7,13 +7,13 @@ class Event(models.Model):
         verbose_name = 'Мероприятие'
         verbose_name_plural = 'Мероприятия'
     TYPES = (
-        ('Академические'),
-        ('Культурные и общественные'),
-        ('Спортивные'),
-        ('Образовательные')
+        ('Академические', 'Академические'),
+        ('Культурные и общественные', 'Культурные и общественные'),
+        ('Спортивные', 'Спортивные'),
+        ('Образовательные', 'Образовательные')
     )
-    name = models.CharField(max_length=100)
-    type = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, default='Не указано')
+    type = models.CharField(max_length=100, choices=TYPES)  # Указание max_length и корректного формата choices
     comment = models.CharField(max_length=100)
 
 class ConnectEvent(models.Model):
