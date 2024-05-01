@@ -1,0 +1,23 @@
+version: "3.9"
+
+services: 
+  django:
+    container_name: django
+    restart: always
+    build:
+      context: ./back-end # django service folder
+    image: back-end
+    volumes:
+      - ./back-end/src:/app/src
+      #- ./persistentdata/media:/var/www/media # <--here
+    depends_on: 
+      - postgresql-db
+  postgresql-db:
+    container_name: postgresql-db
+    restart: always
+    image: postgres
+    #volumes:
+      #- ./persistentdata/db:/var/lib/postgresql/data
+    env_file: ./postgresql/.env
+    ports:
+      - 5432:5432

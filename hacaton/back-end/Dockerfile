@@ -18,3 +18,5 @@ RUN pip install wheel
 RUN pip install pyproject.toml
 RUN pip install asyncpg
 RUN pip install -r requirements.txt
+
+COPY ./src ./src
