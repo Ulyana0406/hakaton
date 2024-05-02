@@ -48,7 +48,14 @@ class Teachers(models.Model):
     class Meta:
         verbose_name = 'Учителя'
         verbose_name_plural = 'Учителей'
-    
+    POSITIONS = (
+        (0, 'Лаборант'),
+        (1, 'Ассистент'),
+        (2, 'Старший преподаватель'),
+        (3, 'Доцент'),
+        (4, 'Профессор'),
+        (5, 'Заведующий кафедрой'),
+    )
     profile = models.OneToOneField(Profiles, 
                                    on_delete=models.CASCADE, 
                                    related_name='teacher_data', 
@@ -59,7 +66,7 @@ class Teachers(models.Model):
     department = models.ForeignKey(Departament, 
                                    on_delete=models.CASCADE, 
                                    verbose_name='Кафедры')
-    position = models.IntegerField()
+    position = models.IntegerField(choices=POSITIONS)
 
 class Students(models.Model):
     class Meta:

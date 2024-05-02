@@ -1,7 +1,5 @@
 from rest_framework import serializers
-from .models import Profiles, Students, Busineses
-
-#3 модели Университет, специальность, преподаватель
+from .models import Profiles, Students, Busineses, Teachers
 
 class StudentsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -13,9 +11,12 @@ class BusinesesSerializer(serializers.ModelSerializer):
         model = Busineses
         fields = ('profile', 'name_company', 'inn_company', 'possition')
 
+class TeachersSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Teachers
+        fields = ('profile', 'university', 'department', 'position')
+
 class ProfilesSerializer(serializers.ModelSerializer):
-    # student_data = StudentsSerializer()
-    # business_data = BusinesesSerializer()
     extra_data = serializers.SerializerMethodField()
     class Meta:
         model = Profiles
@@ -26,9 +27,6 @@ class ProfilesSerializer(serializers.ModelSerializer):
                  'secondname', 
                  'therename',
                  'extra_data'
-                #  'student_data',
-                #  'business_data',
-                #  'profileteacher' - в скором
                 )
     
     def get_extra_data(self, profile: Profiles):
@@ -37,3 +35,5 @@ class ProfilesSerializer(serializers.ModelSerializer):
                 return StudentsSerializer(profile.student_data).data
             case 'Бизнес':
                 return BusinesesSerializer(profile.business_data).data
+            case 'Преподаватель':
+                return TeachersSerializer(profile.teacher_data).data
