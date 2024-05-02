@@ -1,6 +1,4 @@
 from django.db import models
-from profiles.models import Profiles
-from reservation.models import Reservations
 
 class Corpuses(models.Model):
     class Meta:
