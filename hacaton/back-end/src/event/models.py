@@ -13,10 +13,13 @@ class Event(models.Model):
         ('Образовательные', 'Образовательные')
     )
     name = models.CharField(max_length=100, default='Не указано')
-    type = models.CharField(max_length=100, choices=TYPES)  # Указание max_length и корректного формата choices
+    type = models.CharField(max_length=100, choices=TYPES) 
     comment = models.CharField(max_length=100)
 
 class ConnectEvent(models.Model):
+    class Meta:
+        verbose_name = 'Приосединение к мероприятию'
+        verbose_name_plural = 'Присоединится к мероприятиям'
     STATES = (
         (0,"Ожидание"),
         (1,"Одобрено")
