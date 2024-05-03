@@ -1,6 +1,6 @@
 from rest_framework.routers import SimpleRouter
-from django.urls import path
-from .api_view import UserInfo
+from django.urls import  path
+from .api_views import Projects
 
 class OptionalslashRouter(SimpleRouter):
     def __init__(self, trailing_slash=True, use_regex_path=True):
@@ -12,8 +12,5 @@ router = OptionalslashRouter()
 
 urlpatterns = router.urls
 urlpatterns += [
-    path('profile', UserInfo.as_view())
-    #универы
-    #списки пользователей с фильтрацией по типу профиля
-    #список специальностей
+    path('project', Projects.as_view())
 ]
