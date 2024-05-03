@@ -12,7 +12,7 @@ class Event(models.Model):
         ('Спортивные', 'Спортивные'),
         ('Образовательные', 'Образовательные')
     )
-    name = models.CharField(max_length=100, default='Не указано')
+    name = models.CharField(max_length=100, default='Не указано', verbose_name='Название мероприятия')
     type = models.CharField(max_length=100, choices=TYPES) 
     comment = models.CharField(max_length=100)
 
