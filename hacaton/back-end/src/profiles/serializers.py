@@ -26,6 +26,7 @@ class ProfilesSerializer(serializers.ModelSerializer):
                  'firstname', 
                  'secondname', 
                  'therename',
+                 'avatar',
                  'extra_data'
                 )
     

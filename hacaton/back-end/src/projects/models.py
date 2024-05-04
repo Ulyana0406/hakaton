@@ -5,20 +5,22 @@ class Projects(models.Model):
     class Meta:
         verbose_name = 'Проект'
         verbose_name_plural = 'Проекты'
-    name = models.CharField(max_length=100, 
-                            default='Не указано')
+    name = models.CharField(max_length=100)
     description = models.CharField(max_length=100)
-    author = models.OneToOneField(Profiles, 
+    author = models.ForeignKey(Profiles, 
                                    on_delete=models.CASCADE, 
                                    related_name='profile_data', 
                                    verbose_name='Автор проекта')
+    extra_data = models.JSONField(verbose_name='Дополнительные данные', 
+                                  default=dict)
 class Comments(models.Model):
     class Meta:
         verbose_name = 'Комментарий к проекту'
         verbose_name_plural = 'Комментарии проектов'
+    project = models.ForeignKey(Projects, models.CASCADE, verbose_name='Проект')
     user = models.ForeignKey(Profiles, on_delete=models.CASCADE, verbose_name='Логин')
     comment = models.CharField(max_length=100, verbose_name='Комментарий') 
-    datetime = models.DateTimeField()
+    datetime = models.DateTimeField(auto_now_add=True, verbose_name='Время комментария')
     
 
 class Subscribers(models.Model):

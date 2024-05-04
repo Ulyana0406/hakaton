@@ -4,14 +4,14 @@ from .models import Projects, Subscribers, Comments
 class CommentsSerializers(serializers.ModelSerializer):
     class Meta: 
         model = Comments
-        fields = ('user', 'comment', 'datatime')
+        fields = ('pk', 'project', 'user', 'comment', 'datetime')
 
 class SubscribersSerializers(serializers.ModelSerializer):
     class Meta:
         model = Subscribers
-        fields = ('project', 'user')
+        fields = ('pk', 'project', 'user')
 
-class ProjectsSerialiazers(serializers.ModelSerializer):
+class ProjectsSerializers(serializers.ModelSerializer):
     class Meta:
         model = Projects
-        fields = ('pk', 'name', 'description', 'author')
+        fields = ('pk', 'name', 'description', 'author', 'extra_data')
