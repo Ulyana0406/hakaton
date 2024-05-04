@@ -10,13 +10,10 @@ ENV PYTHONUNBUFFERED 1
 WORKDIR /app
 
 # Копируем файлы requirements.txt
-COPY ./requirements.txt ./
+COPY ./req.txt ./
 # RUN apk add build-base
 # Обновляем pip и устанавливаем зависимости
 RUN pip install --upgrade pip
-RUN pip install wheel
-RUN pip install pyproject.toml
-RUN pip install asyncpg
-RUN pip install -r requirements.txt
+RUN pip install -r req.txt
 
 COPY ./src ./src

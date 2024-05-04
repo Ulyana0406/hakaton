@@ -25,8 +25,8 @@ SECRET_KEY = 'django-insecure-4xbt@i4)fq5!-=x=tzyf8fxua#vxg6*9^i3#1mi)zprmtz2do*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['itis-projects.ivgpu.ru', 'django']
+CSRF_TRUSTED_ORIGINS = ['https://itis-projects.ivgpu.ru']
 # Application definition
 
 INSTALLED_APPS = [
@@ -41,14 +41,19 @@ INSTALLED_APPS = [
     'coworking',
     'projects',
     'reservation',
-    'rest_framework'
+    'rest_framework',
+    'django_filters',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    #'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
