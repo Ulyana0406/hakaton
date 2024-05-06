@@ -1,34 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Outlet } from "react-router-dom";
+import styles from './App.module.scss'
 
 function App() {
-  const [count, setCount] = useState(0)
+ 
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <main className={styles.main}>
+      <div className={styles.header}>
+        <img src="Лого.png" alt="" />
+        <div className={styles.headerhrefs}>
+          <a  className={styles.hrefs } href="">Мероприятия</a>
+          <a className={styles.hrefs } href="">Coworking</a>
+          <a className={styles.hrefs } href="">Бронирование</a>
+        </div>
+        <div className={styles.headerButtons}>
+           <button className={styles.enterButton}>Вход</button>
+           <button className={styles.registerButton}>Регистрация</button>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+      <div className={styles.blok}>
+ <img src="Баннер.png" alt="" />
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+      <div className={styles.blok}>
+        <h1 className={styles.h1} >МЕРОПРИЯТИЯ</h1>
+        <div className={styles.events}>
+        <div className={styles.mainEvent}>
+          <img className={styles.eventph} src="eventphoto.png" alt="" />
+          <div className={styles.line}></div>
+          <p className={styles.eventsp}>Сюда можно поместить самое ближайшее мероприятие <br></br> Сюда можно поместить самое ближайшее мероприятие  </p>
+          <div className={styles.eventsButtons}>
+          <button className={styles.firstButton}>01.06.2024</button>
+           <button className={styles.secondButton}>17:55</button>
+           </div>
+        </div>
+        <div className={styles.eventUL}>
+          
+        </div>
+        </div>
+        <button className={styles.allButton}>Все мероприятия</button>
+      </div>
+    </main>
   )
 }
 
