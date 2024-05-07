@@ -1,13 +1,28 @@
 from django.db import models
 from profiles.models import Profiles
 
+class TypeProjects(models.Model):
+    class Meta:
+        verbose_name = 'Тип проекта'
+        verbose_name_plural = 'Типы проектов'
+    title = models.CharField(
+        'Название',
+        max_length=100
+    )
+
 class Projects(models.Model):
     class Meta:
         verbose_name = 'Проект'
         verbose_name_plural = 'Проекты'
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=100)
-    avatar_project = models.ImageField('Превью проекта', upload_to='project_avatar')
+    avatar_project = models.ImageField(
+        'Превью проекта', 
+        upload_to='project_avatar', 
+        null=True, 
+        default=None,
+        blank=True
+    )
     author = models.ForeignKey(
         Profiles, 
         on_delete=models.CASCADE, 
@@ -18,20 +33,12 @@ class Projects(models.Model):
         verbose_name='Дополнительные данные', 
         default=dict
     )
-    
-class TypeProjects(models.Model):
-    class Meta:
-        verbose_name = 'Тип проекта'
-        verbose_name_plural = 'Типы проектов'
-    TYPES = (
-        (0, 'Коммерческие'),
-        (1, 'StartApp'),
-        (2, 'Образовательные'),
-        (3, 'Творческие')
-    )
-    name_type = models.IntegerField(
-        'Тип проекта', 
-        choices=TYPES
+    project_type = models.ForeignKey(
+        TypeProjects, 
+        models.CASCADE,
+        verbose_name='Тип проекта',
+        default=0,
+        related_name='project_type'
     )
 
 class Comments(models.Model):

@@ -16,7 +16,7 @@ urlpatterns = router.urls
 urlpatterns += [
     path('item/', ProjectApi.as_view()),
     path('item/comment_create', CommentsManage.as_view()),
-    path('item/comment_create', SubscriberManage.as_view()),
+    path('item/sub_create', SubscriberManage.as_view()),
     # path('type/<int:name_type>/project', ProjectsViewSet.as_view({'get': 'list', 'put':'update'}), name='project'),
     # path('project/<int:project_id>/comments/', CommentViews.as_view({'get': 'list'}), name='project-comments'),
     # path('project/<int:project_id>/subscribers/', SubscribersViews.as_view({'get': 'list'}), name='project-subscribers'),

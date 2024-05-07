@@ -28,7 +28,10 @@ class Event(models.Model):
     description = models.TextField('Описание')
     avatar = models.ImageField(
         'Картинка мероприятия',
-        upload_to='avatar_event'
+        upload_to='avatar_event', 
+        null=True, 
+        default=None,
+        blank=True
     )
     start_event = models.DateTimeField('Время проведения мероприятия')
     end_event = models.DateTimeField('Время окончания мероприятия')

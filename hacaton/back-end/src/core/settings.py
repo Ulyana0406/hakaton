@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'event',
     'coworking',
     'projects',
-    'reservation',
     'rest_framework',
     'django_filters',
 ]
@@ -85,24 +84,24 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # },
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    },
-    'postgresql': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mydatabase',
-        'USER': 'user',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',  # Или используйте IP-адрес Docker-хоста, если вы запускаете Django не из Docker
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': db_name,
+        'USER': db_user,
+        'PASSWORD': db_password,
+        'HOST': db_host,
+        'PORT': db_port,
     }
 }
-DATABASE_SELECTION = db_selection
-if DATABASE_SELECTION in DATABASES:
-    DATABASES['default'] = DATABASES[DATABASE_SELECTION]
-else:
-    raise ValueError(f"Unsupported database configuration: {DATABASE_SELECTION}")
+# DATABASE_SELECTION = db_selection
+# if DATABASE_SELECTION in DATABASES:
+#     DATABASES['default'] = DATABASES[DATABASE_SELECTION]
+# else:
+#     raise ValueError(f"Unsupported database configuration: {DATABASE_SELECTION}")
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

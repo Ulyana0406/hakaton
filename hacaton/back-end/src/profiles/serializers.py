@@ -18,9 +18,10 @@ class TeachersSerializer(serializers.ModelSerializer):
 
 class ProfilesSerializer(serializers.ModelSerializer):
     extra_data = serializers.SerializerMethodField()
+    avatar = serializers.SerializerMethodField()
     class Meta:
         model = Profiles
-        fields = ('pk', 
+        fields = ('id', 
                  'user', 
                  'type', 
                  'firstname', 
@@ -29,7 +30,11 @@ class ProfilesSerializer(serializers.ModelSerializer):
                  'avatar',
                  'extra_data'
                 )
-    
+    def get_avatar(self, instance:Profiles):
+        try:
+            return instance.avatar.url
+        except:
+            return None
     def get_extra_data(self, profile: Profiles):
         match profile.type:
             case 'Студент': 
