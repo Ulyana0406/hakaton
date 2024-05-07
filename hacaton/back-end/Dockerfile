@@ -19,4 +19,4 @@ RUN pip install -r req.txt
 COPY ./src ./src
 COPY ./entrypoint.sh /
 
-ENTRYPOINT ["sh", "/entrypoint.sh"]
+#ENTRYPOINT ["sh", "/entrypoint.sh"]
