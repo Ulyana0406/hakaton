@@ -31,7 +31,7 @@ class UserList(ViewSet):
 
 class UserInfo(APIView):
     def get(self, req: Request):
-        user_id = req.GET.get('pk')
+        user_id = req.GET.get('id')
         if not user_id: 
             if req.user.is_authenticated:
                 profile = req.user.profile

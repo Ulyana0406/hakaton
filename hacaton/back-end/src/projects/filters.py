@@ -17,5 +17,5 @@ class TypeProjectsFilter(filters.FilterSet):
     class Meta:
         model = TypeProjects
         fields = {
-            'name_type': ['exact', 'in'],  # позволяет фильтровать по точному значению или списку значений
+            'title': ['exact', 'in'],  # позволяет фильтровать по точному значению или списку значений
         }

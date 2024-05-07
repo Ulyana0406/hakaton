@@ -13,7 +13,4 @@ router = OptionalslashRouter()
 urlpatterns = router.urls
 urlpatterns += [
     path('list', AuditoriesList.as_view())
-    #универы
-    #списки пользователей с фильтрацией по типу профиля
-    #список специальностей
 ]

@@ -43,7 +43,12 @@ class Profiles(models.Model):
     firstname = models.CharField(max_length=100, verbose_name='Фамилия')
     secondname = models.CharField(max_length=100, verbose_name='Имя')
     therename = models.CharField(max_length=100, verbose_name='Отчество')
-    avatar = models.ImageField('Аватар', upload_to='avatars', null=True, default=None)
+    avatar = models.ImageField(
+        'Аватар', 
+        upload_to='avatars', 
+        null=True, 
+        default=None,
+        blank=True)
 
 class Teachers(models.Model):
     class Meta:

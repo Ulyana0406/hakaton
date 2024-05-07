@@ -1,8 +1,9 @@
 from rest_framework import serializers
 from .models import Projects, Project_Subscribers, Comments, TypeProjects
+from profiles.serializers import ProfilesSerializer
 
 class CommentsSerializer(serializers.ModelSerializer):
-    user = serializers.StringRelatedField()
+    user = ProfilesSerializer()
 
     class Meta: 
         model = Comments
@@ -14,7 +15,7 @@ class CommentsSerializer(serializers.ModelSerializer):
         ]
 
 class Project_SubscribersSerializer(serializers.ModelSerializer):
-    user = serializers.StringRelatedField()
+    user = ProfilesSerializer()
 
     class Meta:
         model = Project_Subscribers
@@ -29,7 +30,7 @@ class TypeProjectsSerializer(serializers.ModelSerializer):
         model = TypeProjects
         fields = [
             'id', 
-            'name_type', 
+            'title', 
         ]
 
 class ProjectsSerializer(serializers.ModelSerializer):
@@ -45,11 +46,16 @@ class ProjectsSerializer(serializers.ModelSerializer):
         ]
 
 class ProjectsDetailSerializer(serializers.ModelSerializer):
-    project_type = TypeProjectsSerializer()  
-    project_comments = serializers.SerializerMethodField()
+    project_type = TypeProjectsSerializer()
+    project_comments = CommentsSerializer(many=True)
     isowner = serializers.SerializerMethodField()
-    project_subscribers = serializers.SerializerMethodField()
-
+    project_subscribers = Project_SubscribersSerializer(many=True)
+    avatar_project = serializers.SerializerMethodField()
+    def get_avatar_project(self, instance:Projects):
+        try:
+            return instance.avatar_project.url
+        except:
+            return None
     def get_isowner(self, instance):
         return instance.author == self.context['request'].user.profile
     class Meta:

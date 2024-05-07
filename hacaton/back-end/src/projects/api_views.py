@@ -3,6 +3,7 @@ from rest_framework.views import APIView
 from rest_framework import status
 from django.shortcuts import get_object_or_404, get_list_or_404
 from .models import Projects, Project_Subscribers, Comments, TypeProjects
+from profiles.models import Profiles
 from .serializers import TypeProjectsSerializer,ProjectsDetailSerializer, CommentsSerializer, Project_SubscribersSerializer, ProjectsSerializer
 from rest_framework.request import Request
 from rest_framework.response import Response
@@ -20,19 +21,36 @@ class ProjectsList(ViewSet):
         })
 
 class ProjectApi(APIView):
-    def get(self, request:Request, pk=None):
-        pk = request.GET.get('pk')
-        if not pk:
-           return Response({
+    def get(self, request:Request):
+        project_type_id = request.GET.get('type_project')
+        id_project = request.GET.get('id_project')
+        if id_project:
+            project = get_object_or_404(Projects, pk=id_project)
+            data = ProjectsDetailSerializer(project, context={'request':request}).data
+            return Response({
+                'result': data,
+                'description': 'ok'
+            })
+        if project_type_id:
+            # Ensure we're dealing with an integer ID for `TypeProjects`
+            try:
+                project_type = get_object_or_404(TypeProjects, id=project_type_id)
+                projects = Projects.objects.filter(project_type=project_type)
+                data = ProjectsSerializer(projects, many=True, context={'request': request}).data
+                return Response({
+                    'result': data,
+                    'description': 'ok'
+                })
+            except ValueError:
+                # Handle the case where project_type_id is not an integer
+                return Response({
+                    'result': 'Invalid project type ID',
+                    'description': 'Invalid type_project argument'
+                }, status=400)
+        return Response({
             'result': 'Error',
             'description': 'Не передан аргумент'
         }, 401) 
-        project = get_object_or_404(Projects, pk=pk)
-        data = ProjectsDetailSerializer(project, context={'request':request}).data
-        return Response({
-            'result': data,
-            'description': 'ok'
-        })
     def post(self, request:Request):
         serializer = ProjectsDetailSerializer(data=request.data)
         if not serializer.is_valid():
@@ -52,11 +70,13 @@ class SubscriberManage(APIView):
         post вытаскиваем id event и текущего пользователя
         создаем нового подписчика возвращаем результат
         '''
-        id_project = request.data['project_id']
-        project = get_object_or_404(Projects, id_project)
+        id_project = request.data.get('project_id')
+        id_user = request.data.get('user_id')
+        project = get_object_or_404(Projects, pk=id_project)
+        user = get_object_or_404(Profiles, pk=id_user)
         project_subscriber = Project_Subscribers()
         project_subscriber.project = project
-        project_subscriber.user = request.user.profile
+        project_subscriber.user = user
         project_subscriber.save()
         return Response({
             'result': Project_SubscribersSerializer(project_subscriber).data,
@@ -64,15 +84,19 @@ class SubscriberManage(APIView):
         })
     
 class CommentsManage(APIView):
-    def post(self, request, pk=None):
-        if not pk:
-            return
-        project = get_object_or_404(Projects, pk=pk)
+    def post(self, request):
+        project_id = request.data.get('pk')
+        project = get_object_or_404(Projects, pk=project_id)
         comment = request.data['comment']
         project_comment = Comments()
         project_comment.user = request.user.profile
         project_comment.comment = comment
-
+        project_comment.project = project
+        project_comment.save()
+        return Response({
+            'result':CommentsSerializer(project_comment).data,
+            'description': 'ok'
+        })
 
 # class TypeProjectsViewSet(ModelViewSet):
 #     queryset = TypeProjects.objects.all()
