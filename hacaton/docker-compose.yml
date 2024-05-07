@@ -12,6 +12,8 @@ services:
       - ./back-end/src:/app/src
       # - ./persistentdata/static:/app/src/static # <--here
       # - ./persistentdata/media:/app/src/media # <--here
+    env_file:
+      - ./back-end/.env
     depends_on: 
       - postgresql-db
       
@@ -19,13 +21,15 @@ services:
     container_name: postgresql-db
     restart: always
     image: postgres
-    #volumes:
-      #- ./persistentdata/db:/var/lib/postgresql/data
+    volumes:
+      - ./postgresql/data:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: "dbhac"
       POSTGRES_USER: "hacuser"
       POSTGRES_PASSWORD: "hacpass"
     env_file: ./postgresql/.env
+    expose:
+      - 5432
   nginx:
     container_name: nginx
     restart: always
@@ -39,3 +43,4 @@ services:
       - ./back-end/src/media:/var/www/media
     depends_on:
       - django
+    
