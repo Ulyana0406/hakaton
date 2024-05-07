@@ -7,25 +7,75 @@ class Projects(models.Model):
         verbose_name_plural = 'Проекты'
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=100)
-    author = models.ForeignKey(Profiles, 
-                                   on_delete=models.CASCADE, 
-                                   related_name='profile_data', 
-                                   verbose_name='Автор проекта')
-    extra_data = models.JSONField(verbose_name='Дополнительные данные', 
-                                  default=dict)
+    avatar_project = models.ImageField('Превью проекта', upload_to='project_avatar')
+    author = models.ForeignKey(
+        Profiles, 
+        on_delete=models.CASCADE, 
+        related_name='profile_data', 
+        verbose_name='Автор проекта'
+    )
+    extra_data = models.JSONField(
+        verbose_name='Дополнительные данные', 
+        default=dict
+    )
+    
+class TypeProjects(models.Model):
+    class Meta:
+        verbose_name = 'Тип проекта'
+        verbose_name_plural = 'Типы проектов'
+    TYPES = (
+        (0, 'Коммерческие'),
+        (1, 'StartApp'),
+        (2, 'Образовательные'),
+        (3, 'Творческие')
+    )
+    name_type = models.IntegerField(
+        'Тип проекта', 
+        choices=TYPES
+    )
+
 class Comments(models.Model):
     class Meta:
         verbose_name = 'Комментарий к проекту'
         verbose_name_plural = 'Комментарии проектов'
-    project = models.ForeignKey(Projects, models.CASCADE, verbose_name='Проект')
-    user = models.ForeignKey(Profiles, on_delete=models.CASCADE, verbose_name='Логин')
-    comment = models.CharField(max_length=100, verbose_name='Комментарий') 
-    datetime = models.DateTimeField(auto_now_add=True, verbose_name='Время комментария')
+    project = models.ForeignKey(
+        Projects, models.CASCADE, 
+        verbose_name='Проект', 
+        related_name='project_comments'
+    )
+    user = models.ForeignKey(
+        Profiles, 
+        on_delete=models.CASCADE, 
+        verbose_name='Логин'
+    )
+    comment = models.CharField(
+        max_length=100, 
+        verbose_name='Комментарий'
+    ) 
+    datetime = models.DateTimeField(
+        auto_now_add=True, 
+        verbose_name='Время комментария'
+    )
     
 
-class Subscribers(models.Model):
+class Project_Subscribers(models.Model):
     class Meta:
         verbose_name = 'Подписчика'
         verbose_name_plural = 'Подписки'
-    project = models.ForeignKey(Projects, on_delete=models.CASCADE, verbose_name='Проект')
-    user = models.ForeignKey(Profiles, on_delete=models.CASCADE, verbose_name='Подписчик')
+    STATUS = (
+        (0, 'Ожидание'),
+        (1, 'Подтверждена'),
+        (2, 'Отклонена')
+    )
+    project = models.ForeignKey(
+        Projects, 
+        on_delete=models.CASCADE, 
+        verbose_name='Проект', 
+        related_name='project_subscribers'
+    )
+    user = models.ForeignKey(
+        Profiles, 
+        on_delete=models.CASCADE, 
+        verbose_name='Подписчик'
+    )
+    status = models.IntegerField('Стутус регистрации', choices=STATUS, default=1)

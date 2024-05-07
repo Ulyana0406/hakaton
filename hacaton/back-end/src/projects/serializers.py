@@ -1,17 +1,68 @@
 from rest_framework import serializers
-from .models import Projects, Subscribers, Comments
+from .models import Projects, Project_Subscribers, Comments, TypeProjects
 
-class CommentsSerializers(serializers.ModelSerializer):
+class CommentsSerializer(serializers.ModelSerializer):
+    user = serializers.StringRelatedField()
+
     class Meta: 
         model = Comments
-        fields = ('pk', 'project', 'user', 'comment', 'datetime')
+        fields = [
+            'id',  
+            'user', 
+            'comment', 
+            'datetime'
+        ]
 
-class SubscribersSerializers(serializers.ModelSerializer):
+class Project_SubscribersSerializer(serializers.ModelSerializer):
+    user = serializers.StringRelatedField()
+
     class Meta:
-        model = Subscribers
-        fields = ('pk', 'project', 'user')
+        model = Project_Subscribers
+        fields = [
+            'id', 
+            'user',
+            'status'
+        ]
 
-class ProjectsSerializers(serializers.ModelSerializer):
+class TypeProjectsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TypeProjects
+        fields = [
+            'id', 
+            'name_type', 
+        ]
+
+class ProjectsSerializer(serializers.ModelSerializer):
+    project_type = TypeProjectsSerializer()
+
     class Meta:
         model = Projects
-        fields = ('pk', 'name', 'description', 'author', 'extra_data')
+        fields = [
+            'id',
+            'name', 
+            'description', 
+            'project_type',
+        ]
+
+class ProjectsDetailSerializer(serializers.ModelSerializer):
+    project_type = TypeProjectsSerializer()  
+    project_comments = serializers.SerializerMethodField()
+    isowner = serializers.SerializerMethodField()
+    project_subscribers = serializers.SerializerMethodField()
+
+    def get_isowner(self, instance):
+        return instance.author == self.context['request'].user.profile
+    class Meta:
+        model = Projects
+        fields = [
+            'id',
+            'name', 
+            'description', 
+            'avatar_project', 
+            'author', 
+            'extra_data',  # Corrected by adding a comma here
+            'isowner',
+            'project_type',
+            'project_comments',
+            'project_subscribers'
+        ]
