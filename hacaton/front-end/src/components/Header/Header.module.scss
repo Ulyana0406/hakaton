@@ -1,0 +1,60 @@
+.header{
+    padding-left: calc(50% - 600px);
+    padding-right: calc(50% - 600px);
+    display: flex;
+        align-content: center;
+        align-items: center;
+        justify-content: space-between;
+     padding-top: 40px;
+    }
+    .headerhrefs{
+     display: flex;
+     gap: 30px;
+    
+    }
+    .hrefs{
+      text-decoration: none;
+      font-size: 20px;
+      color: black;
+      font-style: bold;
+      font-weight: bold;
+    
+    }
+    .headerButtons{
+      display: flex;
+      gap: 20px;
+     
+    
+    }
+    .enterButton{
+      display: flex;
+      align-items: center;
+        justify-content: center;
+      font-family: "Montserrat";
+      font-weight: bold;
+      font-size: 20px;
+      color: white;
+      height: 40px;
+        width: 155px;
+        border-radius: 13px;
+        border: none;
+        background-color: rgb(183, 60, 240);
+        cursor: pointer;
+    
+    }
+    .registerButton{
+      display: flex;
+      align-items: center;
+        justify-content: center;
+      font-family: "Montserrat";
+      font-weight: bold;
+      font-size: 20px;
+      color: white;
+      height: 40px;
+        width: 206px;
+        border-radius: 13px;
+        border: none;
+        background-color: rgb(86, 84, 255);
+        cursor: pointer;
+    
+    }
