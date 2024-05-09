@@ -1,9 +1,14 @@
 import styles from './Footer.module.scss'
+import { useNavigate } from "react-router-dom";
 function Footer(){
+  const navigate = useNavigate()
+  const redirectMain = ()=>{
+    navigate('/')
+  }
     return (
         <>
          <div className={styles.footer}>
-     <img src="Логофутер.png" alt="" />
+     <img onClick={redirectMain} src="Логофутер.png" alt="" />
      <div className={styles.headerhrefs}>
        <a  className={styles.fhrefs } href="events">Мероприятия</a>
        <a className={styles.fhrefs} href="">Coworking</a>

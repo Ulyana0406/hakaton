@@ -1,6 +1,16 @@
 // import Header from "../Header/Header"
 import styles from './EventsPage.module.scss'
+import { useNavigate } from "react-router-dom";
+import { useEffect } from 'react';
 function EventsPage(){
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
+    const navigate = useNavigate()
+    const redirectAbout = () =>{
+        navigate('/aboutevent')
+      
+    }
 return (
     <div className={styles.eventPage}>
  <div className={styles.breadCrums}>
@@ -27,7 +37,7 @@ return (
                 <div className={styles.eventsDateNumber}>01</div>
               <text className={styles.eventsDateMonth}>июня</text>
               </div>
-            <button className={styles.eventB}>Участвовать</button>
+            <button onClick={redirectAbout} className={styles.eventB}>Участвовать</button>
              
              </div>
 </div>
@@ -44,7 +54,7 @@ return (
                 <div className={styles.eventsDateNumber}>01</div>
               <text className={styles.eventsDateMonth}>июня</text>
               </div>
-            <button className={styles.eventB}>Участвовать</button>
+            <button onClick={redirectAbout} className={styles.eventB}>Участвовать</button>
              
              </div>
 </div>
@@ -61,7 +71,7 @@ return (
                 <div className={styles.eventsDateNumber}>01</div>
               <text className={styles.eventsDateMonth}>июня</text>
               </div>
-            <button className={styles.eventB}>Участвовать</button>
+            <button onClick={redirectAbout} className={styles.eventB}>Участвовать</button>
              
              </div>
 </div>
@@ -78,7 +88,7 @@ return (
                 <div className={styles.eventsDateNumber}>01</div>
               <text className={styles.eventsDateMonth}>июня</text>
               </div>
-            <button className={styles.eventB}>Участвовать</button>
+            <button onClick={redirectAbout} className={styles.eventB}>Участвовать</button>
              
              </div>
 </div>
@@ -95,7 +105,7 @@ return (
                 <div className={styles.eventsDateNumber}>01</div>
               <text className={styles.eventsDateMonth}>июня</text>
               </div>
-            <button className={styles.eventB}>Участвовать</button>
+            <button onClick={redirectAbout} className={styles.eventB}>Участвовать</button>
              
              </div>
 </div>
@@ -112,7 +122,7 @@ return (
                 <div className={styles.eventsDateNumber}>01</div>
               <text className={styles.eventsDateMonth}>июня</text>
               </div>
-            <button className={styles.eventB}>Участвовать</button>
+            <button onClick={redirectAbout} className={styles.eventB}>Участвовать</button>
              
              </div>
 </div>
@@ -132,7 +142,7 @@ return (
                 <div className={styles.eventsDateNumber}>01</div>
               <text className={styles.eventsDateMonth}>июня</text>
               </div>
-            <button className={styles.eventButton}>Участвовать</button>
+            <button onClick={redirectAbout} className={styles.eventButton}>Участвовать</button>
            
              </div>
           
@@ -147,7 +157,7 @@ return (
                 <div className={styles.eventsDateNumber}>01</div>
               <text className={styles.eventsDateMonth}>июня</text>
               </div>
-            <button className={styles.eventButton}>Участвовать</button>
+            <button onClick={redirectAbout} className={styles.eventButton}>Участвовать</button>
             
              </div>
           
@@ -162,7 +172,7 @@ return (
                 <div className={styles.eventsDateNumber}>01</div>
               <text className={styles.eventsDateMonth}>июня</text>
               </div>
-            <button className={styles.eventButton}>Участвовать</button>
+            <button onClick={redirectAbout} className={styles.eventButton}>Участвовать</button>
              
              </div>
           

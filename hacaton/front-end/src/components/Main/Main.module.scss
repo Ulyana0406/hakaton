@@ -17,7 +17,7 @@
     font-size: 60px;
     font-style: normal;
     font-weight: 600;
-    color: rgb(86, 84, 255);
+    color:rgba(20, 100, 246, 1);
   }
   .allButton{
     margin-top: 72px;
@@ -32,7 +32,7 @@
       width: 221px;
       border-radius: 13px;
       border: none;
-      background-color: rgb(86, 84, 255);
+      background-color:rgba(20, 100, 246, 1);
       cursor: pointer;
   }
   .mainEvent{
@@ -40,7 +40,7 @@
     width: 441px;
     border: solid 3px;
     border-radius: 30px;
-    border-color: rgb(86, 84, 255);
+    border-color: rgba(20, 100, 246, 1);
   }
   .events{
     margin-top: 50px;
@@ -84,7 +84,7 @@
     width: 103px;
     border-radius: 30px;
     border: none;
-    background-color: rgb(86, 84, 255);
+    background-color:rgba(20, 100, 246, 1);
     cursor: pointer;
   }
   .secondButton{
@@ -115,7 +115,7 @@
       width: 290px;
     border: solid 3px;
     border-radius: 13px;
-    border-color:rgb(86, 84, 255) ;
+    border-color:rgba(20, 100, 246, 1) ;
     }
     &Date{
       display: flex;
@@ -136,7 +136,7 @@
     width: 360px;
     border: solid 3px;
     border-radius: 30px;
-    border-color: rgb(86, 84, 255);
+    border-color: rgba(20, 100, 246, 1);
     &Img{
       width: 355px
     }
@@ -158,12 +158,12 @@
     width: 300px;
     border: solid 3px;
     border-radius: 30px;
-    border-color: rgb(86, 84, 255);
+    border-color:rgba(20, 100, 246, 1);
     background-color: #cfcfcf;
   &Button{
     padding-left: 15px;
       display: flex;
-      color: rgb(86, 84, 255);
+      color: rgba(20, 100, 246, 1);
       gap: 10px;
       background-color: white;
       font-family: "Montserrat";
@@ -173,14 +173,14 @@
       height: 60px;
       border: solid 2px;
       border-radius: 0px 40px 30px 30px;
-      border-color: rgb(86, 84, 255);
+      border-color: rgba(20, 100, 246, 1);
       align-items: center;
       &Start{
         padding-left: 30px;
       display: flex;
       color: white;
       gap: 10px;
-      background-color: rgb(86, 84, 255);
+      background-color: rgba(20, 100, 246, 1);
       font-family: "Montserrat";
       font-weight: bold;
       font-size: 20px;
@@ -188,7 +188,7 @@
       height: 60px;
       border: solid 2px;
       border-radius: 0px 40px 30px 30px;
-      border-color: rgb(86, 84, 255);
+      border-color: rgba(20, 100, 246, 1);
       align-items: center;
       }
   }
@@ -203,7 +203,7 @@
   .createH{
     font-weight: 600;
     font-size: 60px;
-    color: rgb(86, 84, 255);
+    color: rgba(20, 100, 246, 1);
     position: absolute;
     margin-left: 46px;
     margin-top: 65px;
@@ -228,7 +228,7 @@
       width: 221px;
       border-radius: 13px;
       border: none;
-      background-color: rgb(86, 84, 255);
+      background-color:rgba(20, 100, 246, 1);
       cursor: pointer;
   }
   .latestEvents{
@@ -238,16 +238,16 @@
   }
   .latestEventsH{
     letter-spacing: -0.5px;
-    color: rgb(86, 84, 255);
+    color: rgba(20, 100, 246, 1);
     font-weight: bold;
-    color: rgb(86, 84, 255);
+    color: rgba(20, 100, 246, 1);
     font-size: 30px;
     margin-left: 15px;
   }
   .h2{
     letter-spacing: -0.5px;
     font-weight: bold;
-    color: rgb(86, 84, 255);
+    color: rgba(20, 100, 246, 1);
     font-size: 38px;
     margin-left: -790px
   }
@@ -293,7 +293,7 @@
     color: white;
     border-radius: 30px;
     border: none;
-    background-color: rgb(86, 84, 255);
+    background-color: rgba(20, 100, 246, 1);
     cursor: pointer;
     width: 200px;
     height: 46px;

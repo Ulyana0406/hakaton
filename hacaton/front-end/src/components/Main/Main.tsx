@@ -1,7 +1,10 @@
 import styles from './Main.module.scss'
 import { useNavigate } from "react-router-dom";
-
+import { useEffect } from 'react';
 const MainPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
     const navigate =useNavigate();
 const RedirectEvent = () =>{
   navigate("events")

@@ -1,9 +1,14 @@
 import styles from "./Header.module.scss"
+import { useNavigate } from "react-router-dom";
 function Header(){
+  const navigate = useNavigate()
+  const redirectMain = ()=>{
+    navigate('/')
+  }
     return (
         <>
          <div className={styles.header}>
-        <img src="Лого.png" alt="" />
+        <img onClick={redirectMain} src="Лого.png" alt="" />
         <div className={styles.headerhrefs}>
           <a  className={styles.hrefs } href="events">Мероприятия</a>
           <a className={styles.hrefs } href="">Coworking</a>
