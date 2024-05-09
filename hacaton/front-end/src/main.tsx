@@ -5,6 +5,7 @@ import "./index.scss";
 import EventsPage from "./components/EventsPage/EventsPage";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import MainPage from './components/Main/Main';
+import AboutEvent from "./components/AboutEvent/AboutEvent";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
       {
         path: "events",
         element: <EventsPage/>,
+      },
+      {
+        path: "aboutevent",
+        element: <AboutEvent/>,
       },
     ],
   },

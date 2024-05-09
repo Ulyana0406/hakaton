@@ -1,0 +1,40 @@
+.aboutEvent{
+    padding-left: calc(50% - 600px);
+    padding-right: calc(50% - 600px);
+}
+.breadCrums{
+    display: flex;
+    margin-top: 30px;
+    gap: 10px;
+    align-items: center;
+}
+.arrow{
+    width: 27px;
+}
+.eventA{
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .eventA2{
+    text-decoration: none;
+    color: rgb(94, 94, 94);
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .h2{
+    letter-spacing: -0.5px;
+    font-weight: bold;
+    color: rgb(86, 84, 255);
+    font-size: 38px;
+    
+  }
+  .lineH{
+    
+    margin-top: 12px;
+  
+      border: solid 8px;
+      width: 133px;
+      border-color:  rgb(183, 60, 240);
+  }

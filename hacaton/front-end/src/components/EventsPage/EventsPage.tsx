@@ -7,6 +7,8 @@ return (
 <a className={styles.eventA} href="/">Главная</a>
 <img className={styles.arrow}  src="arrow.svg" alt="" />
 <a className={styles.eventA2} href="events">Мероприятия</a>
+
+
  </div>
  <h1 className={styles.eventH}>МЕРОПРИЯТИЯ</h1>
  <div className={styles.filter}>
