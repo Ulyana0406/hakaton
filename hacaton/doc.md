@@ -282,7 +282,6 @@ GET /api/projects/item
     "description": "ok"
 }
 ```
-_______________________
 
 ## Информация о типах проектов
 
@@ -365,10 +364,207 @@ POST /api/projects/item/comment_create
 |:-:|:-:|:-:|:-|
 | **project_id** | да | integer | |
 | **comment** | да | string | |
-
+_________
 # Работа с мероприятием
-GET
+
+## Получение информации о списке мероприятий
+
+Метод не требует авторизации пользователя. 
+
+### URL
+
+```
+GET /api/events/list
+```
+
+### Параметры
+
+| Имя параметра | Обязательный | Тип | Примичание |
+|:-:|:-:|:-:|:-|
+
+### Описание ответа
+
+| Имя поля | Тип | Примичание |
+|:-:|:-:|:-|
+| **id**    | **integer**     | |
+|**name** | **integer** |  |
+| **short_description** | **string** | |
+| **start_event** | **string** | Дата начала мероприятия |
+| **avatar** | **string** or **null** | null - когда отсутсвует аватар |
+| **issub** | **bool** | Если пользователь авторизован и является участником мероприятия |
+
+### Пример ответа
+
+```json
+{
+    "result": [
+        {
+            "id": 1,
+            "name": "New",
+            "short_description": "Jbhdjihdiqd",
+            "start_event": "2024-05-08T23:52:02+03:00",
+            "avatar": null,
+            "issub": true
+        }
+    ],
+    "description": "ok"
+}
+```
+
+## Получение информации о мероприятии
+
+Метод не требует авторизации пользователя. 
+
+### URL
+
+```
+GET /api/events/item
+```
+
+### Параметры
+
+| Имя параметра | Обязательный | Тип | Примичание |
+|:-:|:-:|:-:|:-|
+| **event_id** | да | integer |  |
+________
+
+### Описание ответа
+
+| Имя поля | Тип | Примичание |
+|:-:|:-:|:-|
+| **id**    | **integer**     | |
+|**name** | **integer** |  |
+| **type** | **string** | |
+| **short_description** | **string** |  |
+| **description** | **string** | |
+| **start_event** | **string** |  |
+| **end_event** | **string** |  |
+| **avatar** | **srting** or **null** | null - когда отсутсвует аватар |
+| **place_event** | **string** |  |
+| **user** | **string** | |
+| **isowner** | **bool** |  |
+| **extra_data** | **string** |  |
+| **issub** | **bool** |  |
+| **event_subscribers** | **string** |  |
+
+### Пример ответа
+
+```json
+{
+    "result": {
+        "id": 1,
+        "name": "New",
+        "type": 0,
+        "short_description": "Jbhdjihdiqd",
+        "description": "1sdfasfas",
+        "start_event": "2024-05-08T23:52:02+03:00",
+        "end_event": "2024-05-08T23:52:03+03:00",
+        "avatar": null,
+        "place_event": 1,
+        "user": 1,
+        "isowner": true,
+        "extra_data": "{}",
+        "issub": true,
+        "event_subscribers": [
+            {
+                "id": 1,
+                "user": {
+                    "id": 1,
+                    "type": 0,
+                    "firstname": "Мочалин",
+                    "secondname": "Сергей",
+                    "therename": "Дмитриевич",
+                    "avatar": "/media/avatars/Monosnap_5dec5dfa-868e-4cf5-94d8-76c1b7f988a1.webp_6PQ6YKr.png",
+                    "extra_data": {
+                        "university": {
+                            "id": 1,
+                            "name": "ИВГПУ"
+                        },
+                        "speciality": {
+                            "id": 1,
+                            "name": "ИТИС"
+                        },
+                        "publications": [],
+                        "events": [
+                            {
+                                "id": 1,
+                                "title": "New"
+                            }
+                        ],
+                        "projects": [
+                            {
+                                "id": 1,
+                                "title": "New York"
+                            }
+                        ]
+                    }
+                },
+                "status": 1
+            },
+            {
+                "id": 2,
+                "user": {
+                    "id": 2,
+                    "type": 1,
+                    "firstname": "Мочалин",
+                    "secondname": "Сергей",
+                    "therename": "Дмитриевич",
+                    "avatar": null,
+                    "extra_data": {
+                        "university": 1,
+                        "department": 1,
+                        "position": 3,
+                        "publications": [],
+                        "events": [
+                            {
+                                "id": 1,
+                                "title": "New"
+                            }
+                        ],
+                        "projects": []
+                    }
+                },
+                "status": 0
+            }
+        ]
+    },
+    "description": "ok"
+}
+```
+## Добавление нового мероприятия
+
+Метод используется для добавления нового мероприятия, необходима авторизация пользователя.
+
+### URL
+
+```
+POST /api/events/item
+```
+
+### Параметры JSON
+
+| Имя параметра | Обязательный | Тип | Примичание |
+|:-:|:-:|:-:|:-|
+| **name** | да | string | |
+| **type** | да | integer | |
+| **short_description** | да | string | |
+| **description** | да | string | |
+| **start_event** | да | date | формат даты: YYYY-MM-DDThh:mm |
+| **end_event** | да | date | формат даты: YYYY-MM-DDThh:mm |
+| **place_event** | да | integer | место проведения мероприятия, см инфо об аудиториях |
+### Описание ответа
+
+При успешной работе возвращает сокращенную информацию о мероприятии (см инфо мероприятия).
 
 
+## Получение инфомарции об аудитории 
+
+Метод используется для получения свободных аудиториях, не требует ауторизации пользователя.
+
+## URL
+
+```
+GET /api/coworkings/list
+```
 POST
 
