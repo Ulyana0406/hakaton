@@ -566,5 +566,16 @@ POST /api/events/item
 ```
 GET /api/coworkings/list
 ```
+
+### Параметры фильтра
+
+| Имя параметра | Обязательный | Тип | Примичание |
+|:-:|:-:|:-:|:-|
+| **start** | да | string | формат даты: YYYY-MM-DDThh:mm |
+| **stop** | да | string | формат даты: YYYY-MM-DDThh:mm |
+________
+
+### Описание ответа
+
 POST
 
