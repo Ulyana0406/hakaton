@@ -1,7 +1,7 @@
 from rest_framework.routers import SimpleRouter
 from django.urls import  path, include
 #from .api_views import ProjectsViewSet, CommentViews, SubscribersViews, TypeProjectsViewSet
-from .api_views import ProjectsList, ProjectApi, CommentsManage, SubscriberManage
+from .api_views import ProjectsList, ProjectApi, CommentsManage, SubscriberManage, TypeProjectList
 class OptionalslashRouter(SimpleRouter):
     def __init__(self, trailing_slash=True, use_regex_path=True):
         super().__init__(trailing_slash, use_regex_path)
@@ -9,6 +9,7 @@ class OptionalslashRouter(SimpleRouter):
 
 router = OptionalslashRouter()
 router.register('list', ProjectsList, 'list')
+router.register('typelist', TypeProjectList, 'typelist')
 # router.register('type', TypeProjectsViewSet, 'type')
 # router.register('project', ProjectsViewSet, 'project')
 

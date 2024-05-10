@@ -4,7 +4,7 @@ from rest_framework import status
 from django.shortcuts import get_object_or_404, get_list_or_404
 from .models import Projects, Project_Subscribers, Comments, TypeProjects
 from profiles.models import Profiles
-from .serializers import TypeProjectsSerializer,ProjectsDetailSerializer, CommentsSerializer, Project_SubscribersSerializer, ProjectsSerializer
+from .serializers import TypeProjectsSerializer,ProjectsDetailSerializer, CommentsSerializer, Project_SubscribersSerializer, ProjectsSerializer, TypeProjectsSerializer
 from rest_framework.request import Request
 from rest_framework.response import Response
 from .filters import ProjectFilter, TypeProjectsFilter
@@ -13,7 +13,14 @@ from django_filters.rest_framework import DjangoFilterBackend
 class ProjectsList(ViewSet):
     queryset = Projects.objects.all()
     serializer_class = ProjectsSerializer
+
     def list(self, request):
+        project_type_id = request.GET.get('type_project')
+
+        if project_type_id:
+            project_type = get_object_or_404(TypeProjects, id=project_type_id)
+            self.queryset = self.queryset.filter(project_type=project_type)
+
         data = self.serializer_class(self.queryset, many=True, context={'request':request}).data
         return Response({
             'result': data,
@@ -22,45 +29,48 @@ class ProjectsList(ViewSet):
 
 class ProjectApi(APIView):
     def get(self, request:Request):
-        project_type_id = request.GET.get('type_project')
         id_project = request.GET.get('id_project')
         if id_project:
             project = get_object_or_404(Projects, pk=id_project)
+            if not project:
+               return Response({
+                'result': 'error',
+                'description': 'Не найден проект по этому id'
+            }) 
             data = ProjectsDetailSerializer(project, context={'request':request}).data
             return Response({
                 'result': data,
                 'description': 'ok'
             })
-        if project_type_id:
-            # Ensure we're dealing with an integer ID for `TypeProjects`
-            try:
-                project_type = get_object_or_404(TypeProjects, id=project_type_id)
-                projects = Projects.objects.filter(project_type=project_type)
-                data = ProjectsSerializer(projects, many=True, context={'request': request}).data
-                return Response({
-                    'result': data,
-                    'description': 'ok'
-                })
-            except ValueError:
-                # Handle the case where project_type_id is not an integer
-                return Response({
-                    'result': 'Invalid project type ID',
-                    'description': 'Invalid type_project argument'
-                }, status=400)
+        
         return Response({
             'result': 'Error',
             'description': 'Не передан аргумент'
         }, 401) 
-    def post(self, request:Request):
-        serializer = ProjectsDetailSerializer(data=request.data)
-        if not serializer.is_valid():
-            return Response({
-                'result':serializer.errors,
-                'description': 'Ошибка валидации'
-            }, 401)
-        serializer.save()
+    def post(self, request):
+        # Подготовка данных для сериализатора
+        project_name = request.data['project_name']
+        project_description = request.data['project_description']
+        project_type_id = request.data['project_type_id']
+        project_type = get_object_or_404(TypeProjects, pk=project_type_id)  
+        project = Projects() 
+        project.name = project_name
+        project.description = project_description
+        project.author = request.user.profile
+        project.project_type = project_type
+        project.save()
         return Response({
-            'result': serializer.data,
+            'result': ProjectsDetailSerializer(project, context={'request':request}).data,
+            'description': 'ok'
+        })
+    
+class TypeProjectList(ViewSet):
+    queryset = TypeProjects.objects.all()
+    serializer_class = TypeProjectsSerializer
+    def list(self, request):
+        data = self.serializer_class(self.queryset, many=True).data
+        return Response({
+            'result': data,
             'description': 'ok'
         })
     
@@ -85,7 +95,7 @@ class SubscriberManage(APIView):
     
 class CommentsManage(APIView):
     def post(self, request):
-        project_id = request.data.get('pk')
+        project_id = request.data.get('project_id')
         project = get_object_or_404(Projects, pk=project_id)
         comment = request.data['comment']
         project_comment = Comments()
@@ -97,141 +107,3 @@ class CommentsManage(APIView):
             'result':CommentsSerializer(project_comment).data,
             'description': 'ok'
         })
-
-# class TypeProjectsViewSet(ModelViewSet):
-#     queryset = TypeProjects.objects.all()
-#     serializer_class = TypeProjectsSerializers
-#     filter_backends = (DjangoFilterBackend,)
-#     filterset_class = TypeProjectsFilter
-    
-#     def retrieve(self, request, name_type=None, *args, **kwargs):
-#         # Фильтруем TypeProjects по name_type
-#         type_projects = get_list_or_404(TypeProjects, name_type=name_type)
-
-#         # Находим все проекты, связанные с этими типами проекта
-#         projects = []
-#         for tp in type_projects:
-#             projects.extend(Projects.objects.filter(type_project=tp))
-
-#         # Сериализуем найденные проекты
-#         serializer = ProjectsSerializers(projects, many=True)
-#         return Response({
-#             'result': serializer.data,
-#             'description': 'ok'
-#         })
-    
-#     def create(self, request:Request, *args, **kwargs):
-#         serializer = self.serializer_class(data=request.data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response({
-#                 'result': serializer.data,
-#                 'description': 'ok'
-#             }, status=status.HTTP_201_CREATED)
-#         return Response({
-#             'result': serializer.errors,
-#             'description': 'Ошибка валидации'
-#         }, status=status.HTTP_400_BAD_REQUEST)
-    
-#     def update(self, request, name_type=None, *args, **kwargs):
-#         project = get_object_or_404(Projects, pk=name_type)
-#         serializer = self.serializer_class(project, data=request.data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response({
-#                 'result': serializer.data,
-#                 'description': 'ok'
-#             })
-#         return Response({
-#             'result': serializer.errors,
-#             'description': 'Ошибка валидации'
-#         }, status=status.HTTP_400_BAD_REQUEST)
-
-#     def partial_update(self, request, name_type=None, *args, **kwargs):
-#         return self.update(request, name_type, *args, **kwargs)
-    
-# class ProjectsViewSet(ModelViewSet):
-#     queryset = Projects.objects.all()
-#     serializer_class = ProjectsSerializers
-#     filter_backends = (DjangoFilterBackend,)
-#     filterset_class = ProjectFilter
-
-#     def retrieve(self, request, pk=None, *args, **kwargs):
-#         project = get_object_or_404(Projects, pk=pk)
-#         serializer = self.serializer_class(project)
-#         return Response({
-#             'result': serializer.data,
-#             'description': 'ok'
-#         })
-
-#     def create(self, request:Request, *args, **kwargs):
-#         serializer = self.serializer_class(data=request.data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response({
-#                 'result': serializer.data,
-#                 'description': 'ok'
-#             }, status=status.HTTP_201_CREATED)
-#         return Response({
-#             'result': serializer.errors,
-#             'description': 'Ошибка валидации'
-#         }, status=status.HTTP_400_BAD_REQUEST)
-
-#     def update(self, request, pk=None, *args, **kwargs):
-#         project = get_object_or_404(Projects, pk=pk)
-#         serializer = self.serializer_class(project, data=request.data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response({
-#                 'result': serializer.data,
-#                 'description': 'ok'
-#             })
-#         return Response({
-#             'result': serializer.errors,
-#             'description': 'Ошибка валидации'
-#         }, status=status.HTTP_400_BAD_REQUEST)
-
-#     def partial_update(self, request, pk=None, *args, **kwargs):
-#         return self.update(request, pk, *args, **kwargs)
-    
-# class CommentViews(ModelViewSet):
-#     queryset = Comments.objects.all()
-#     serializer_class = CommentsSerializers
-
-#     def get_queryset(self):
-#         """
-#         Возвращает QuerySet с отфильтрованными комментариями по ID проекта.
-#         """
-#         project_id = self.kwargs.get('project_id')
-#         if project_id is not None:
-#             return self.queryset.filter(project_id=project_id)
-        
-#         return self.queryset
-#     def list(self, request, *args, **kwargs):
-#         queryset = self.filter_queryset(self.get_queryset())
-#         serializer = self.get_serializer(queryset, many=True)
-#         return Response({
-#             'result': serializer.data,
-#             'description': 'ok'
-#         })
-    
-# class SubscribersViews(ModelViewSet):
-#     queryset = Subscribers.objects.all()
-#     serializer_class = SubscribersSerializers
-
-#     def get_queryset(self):
-#         """
-#         Возвращает QuerySet с отфильтрованными комментариями по ID проекта.
-#         """
-#         project_id = self.kwargs.get('project_id')
-#         if project_id is not None:
-#             return self.queryset.filter(project_id=project_id)
-        
-#         return self.queryset
-#     def list(self, request, *args, **kwargs):
-#         queryset = self.filter_queryset(self.get_queryset())
-#         serializer = self.get_serializer(queryset, many=True)
-#         return Response({
-#             'result': serializer.data,
-#             'description': 'ok'
-#         })

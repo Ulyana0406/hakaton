@@ -14,7 +14,6 @@ class Event(models.Model):
     )
     name = models.CharField(
         max_length=100, 
-        default='Не указано', 
         verbose_name='Название мероприятия'
     )
     type = models.IntegerField(
@@ -73,6 +72,7 @@ class Event_Subscribers(models.Model):
         verbose_name='Подписчик', 
         default=None, 
         null=True,   
+        related_name='event_profile'
     )
     status = models.IntegerField('Стутус регистрации', choices=STATUS, default=0)
 

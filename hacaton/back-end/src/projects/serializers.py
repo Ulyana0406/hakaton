@@ -1,9 +1,9 @@
 from rest_framework import serializers
 from .models import Projects, Project_Subscribers, Comments, TypeProjects
-from profiles.serializers import ProfilesSerializer
+from profiles.serializers import ShortProfilesSerializer
 
 class CommentsSerializer(serializers.ModelSerializer):
-    user = ProfilesSerializer()
+    user = ShortProfilesSerializer()
 
     class Meta: 
         model = Comments
@@ -15,7 +15,7 @@ class CommentsSerializer(serializers.ModelSerializer):
         ]
 
 class Project_SubscribersSerializer(serializers.ModelSerializer):
-    user = ProfilesSerializer()
+    user = ShortProfilesSerializer()
 
     class Meta:
         model = Project_Subscribers
@@ -43,14 +43,16 @@ class ProjectsSerializer(serializers.ModelSerializer):
             'name', 
             'description', 
             'project_type',
+            'avatar_project'
         ]
 
 class ProjectsDetailSerializer(serializers.ModelSerializer):
-    project_type = TypeProjectsSerializer()
-    project_comments = CommentsSerializer(many=True)
+    project_type = TypeProjectsSerializer(read_only=True)
+    project_comments = CommentsSerializer(many=True, required=False, default=None)
     isowner = serializers.SerializerMethodField()
-    project_subscribers = Project_SubscribersSerializer(many=True)
+    project_subscribers = Project_SubscribersSerializer(many=True, required=False, default=None)
     avatar_project = serializers.SerializerMethodField()
+    author = ShortProfilesSerializer()
     def get_avatar_project(self, instance:Projects):
         try:
             return instance.avatar_project.url

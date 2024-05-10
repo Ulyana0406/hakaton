@@ -20,7 +20,7 @@ class EventAPI(APIView):
     queryset = Event.objects.all()
     serializer_class = EventsDetailSerializer
     def get(self, request, pk=None):
-        pk = request.GET.get('pk')
+        pk = request.GET.get('event_id')
         event = get_object_or_404(Event, pk=pk)
         data = EventsDetailSerializer(event, context={'request':request}).data
         return Response({
