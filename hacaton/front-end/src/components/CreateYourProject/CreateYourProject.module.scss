@@ -1,0 +1,73 @@
+.H {
+  font-size: 80px;
+  font-style: normal;
+  font-weight: 600;
+  color: rgba(20, 100, 246, 1);
+}
+.H2 {
+  font-size: 80px;
+  font-style: normal;
+  font-weight: 600;
+  color: rgb(183, 60, 240);
+}
+.createProjectH {
+  margin-top: 80px;
+}
+.createProjectText {
+  color: black;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  margin-top: 40px;
+}
+.createProject {
+  padding-left: calc(50% - 600px);
+  padding-right: calc(50% - 600px);
+}
+.ProjectInput {
+  width: 500px;
+  height: 50px;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid rgba(20, 100, 246, 1);
+}
+.ProjectInput::placeholder {
+  color: darkgray;
+  font-size: 20px;
+  font-style: normal;
+}
+.ProjectInput:focus {
+  font-size: 20px;
+}
+.Projectform {
+  display: flex;
+  flex-direction: column;
+}
+.createProjectInfo {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+.allButton {
+  margin-top: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Montserrat";
+  font-weight: bold;
+  font-size: 20px;
+  color: white;
+  height: 61px;
+  width: 221px;
+  border-radius: 13px;
+  border: none;
+  background-color: rgb(183, 60, 240);
+  cursor: pointer;
+}
+.Button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
