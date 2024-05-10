@@ -2,6 +2,7 @@ from rest_framework import serializers
 from .models import *
 from profiles.serializers import ProfilesSerializer
 
+
 class Event_SubcribersSerializer(serializers.ModelSerializer):
     user = ProfilesSerializer()
     class Meta:
@@ -13,10 +14,14 @@ class Event_SubcribersSerializer(serializers.ModelSerializer):
         )
 
 class EventsDetailSerializer(serializers.ModelSerializer):
-    event_subscribers = Event_SubcribersSerializer(many=True)
+    event_subscribers = Event_SubcribersSerializer(many=True, required=False)
     isowner = serializers.SerializerMethodField()
     issub = serializers.SerializerMethodField()
     avatar = serializers.SerializerMethodField()
+    user = serializers.SerializerMethodField()
+    def get_user(self, instance:Event):
+        user = instance.user = self.context['request'].user.profile 
+        return user
     def get_issub(self, instance:Event):
         user = instance.event_subscribers.filter(user=self.context['request'].user.profile)
         return bool(user)
@@ -27,6 +32,7 @@ class EventsDetailSerializer(serializers.ModelSerializer):
             return instance.avatar.url
         except:
             return None
+    
     class Meta:
         model = Event
         fields = ('id', 

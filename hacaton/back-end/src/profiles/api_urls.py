@@ -8,12 +8,9 @@ class OptionalslashRouter(SimpleRouter):
         self.trailing_slash = '/?'
 
 router = OptionalslashRouter()
-router.register('profile', UserList, 'profile')
+router.register('list', UserList, 'profiles_list')
 
 urlpatterns = router.urls
 urlpatterns += [
     path('item', UserInfo.as_view())
-    #универы
-    #списки пользователей с фильтрацией по типу профиля
-    #список специальностей
 ]
