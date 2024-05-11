@@ -18,10 +18,11 @@ class EventsDetailSerializer(serializers.ModelSerializer):
     isowner = serializers.SerializerMethodField()
     issub = serializers.SerializerMethodField()
     avatar = serializers.SerializerMethodField()
-    user = serializers.SerializerMethodField()
-    def get_user(self, instance:Event):
-        user = instance.user = self.context['request'].user.profile 
-        return user
+    user = serializers.PrimaryKeyRelatedField(read_only=True)
+    def create(self, validated_data):
+        # Устанавливаем пользователя автоматически из контекста запроса
+        validated_data['user'] = self.context['request'].user.profile
+        return super().create(validated_data)
     def get_issub(self, instance:Event):
         user = instance.event_subscribers.filter(user=self.context['request'].user.profile)
         return bool(user)
