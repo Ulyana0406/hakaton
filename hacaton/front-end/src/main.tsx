@@ -9,6 +9,7 @@ import AboutEvent from "./components/AboutEvent/AboutEvent";
 import AboutProject from "./components/AboutProject/AboutProject";
 import CreateYourProject from "./components/CreateYourProject/CreateYourProject";
 import Projects from "./components/Projects/Projects";
+import CreateEvent from "./components/CreateEvent/CreateEvent";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: "projects",
         element: <Projects />,
+      },
+      {
+        path: "createevent",
+        element: <CreateEvent />,
       },
     ],
   },
