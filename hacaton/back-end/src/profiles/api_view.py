@@ -8,6 +8,8 @@ from rest_framework import permissions
 from .models import Profiles
 from .serializers import ProfilesSerializer, ShortProfilesSerializer
 from django.contrib.auth import authenticate, login
+from core.settings import NoCSRF, BaseAuthentication
+
 
 class UserList(ViewSet):
     """
@@ -29,6 +31,7 @@ class UserList(ViewSet):
             'result': ProfilesSerializer(queryset, many=True).data,
             'description': 'ok'
         })
+
 
 class UserInfo(APIView):
     def get(self, req: Request):

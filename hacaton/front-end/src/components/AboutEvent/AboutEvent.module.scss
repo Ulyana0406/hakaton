@@ -1,0 +1,128 @@
+.aboutEvent {
+  padding-left: calc(50% - 600px);
+  padding-right: calc(50% - 600px);
+}
+.about {
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+.breadCrums {
+  display: flex;
+  margin-top: 30px;
+  gap: 10px;
+  align-items: center;
+}
+.arrow {
+  width: 27px;
+}
+.eventA {
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+}
+.eventA2 {
+  text-decoration: none;
+  color: rgb(94, 94, 94);
+  font-size: 20px;
+  font-weight: bold;
+}
+.h2 {
+  margin-top: 87px;
+  letter-spacing: -0.5px;
+  font-weight: bold;
+  color: rgba(20, 100, 246, 1);
+  font-size: 38px;
+}
+.lineH {
+  margin-top: 12px;
+
+  border: solid 8px;
+  width: 133px;
+  border-color: rgb(183, 60, 240);
+}
+.allButton {
+  margin-top: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Montserrat";
+  font-weight: bold;
+  font-size: 20px;
+  color: white;
+  height: 71px;
+  width: 250px;
+  border-radius: 13px;
+  border: none;
+  background-color: rgba(20, 100, 246, 1);
+  cursor: pointer;
+}
+.aboutН {
+  color: rgba(20, 100, 246, 1);
+  font-size: 100px;
+  font-weight: bold;
+}
+.aboutText {
+  margin-top: 40px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.aboutImg {
+}
+.aboutImge {
+}
+.whatAwait {
+}
+.ul {
+  display: flex;
+  margin-top: 58px;
+  flex-direction: column;
+  gap: 41px;
+}
+.li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  &Text {
+    font-size: 20px;
+    font-weight: bold;
+  }
+}
+.date {
+  display: flex;
+  gap: 20px;
+}
+.placeInfo {
+  margin-top: 70px;
+  display: flex;
+  justify-content: space-between;
+}
+.number {
+  font-size: 50px;
+  font-weight: bold;
+  color: rgb(183, 60, 240);
+}
+.month {
+  font-size: 50px;
+  font-weight: bold;
+  color: black;
+}
+.org {
+  margin-top: 70px;
+  display: flex;
+}
+.orgInfo {
+  margin-left: 30px;
+  display: flex;
+  font-size: 20px;
+  flex-direction: column;
+  gap: 30px;
+  font-size: 20px;
+}
+.orgInfoName {
+  margin-left: 29px;
+  font-size: 50px;
+  font-weight: bold;
+}

@@ -1,10 +1,11 @@
 from rest_framework.views import APIView
 from rest_framework.viewsets import ViewSet
 from .models import Event, Event_Subscribers
-from .serializers import EventsDetailSerializer, EventsSerializer, Event_SubcribersSerializer
+from .serializers import EventsDetailSerializer, EventsSerializer, Event_SubcribersSerializer, EventPostSerializer
 from rest_framework.response import Response
 from rest_framework.request import Request
 from django.shortcuts import get_object_or_404
+
 
 class EventList(ViewSet):
     queryset = Event.objects.all()
@@ -15,6 +16,7 @@ class EventList(ViewSet):
             'result': data,
             'description': 'ok'
         })
+
 
 class EventAPI(APIView):
     queryset = Event.objects.all()
@@ -29,19 +31,19 @@ class EventAPI(APIView):
         })
 
     def post(self, request):
-        serializer = self.serializer_class(data=request.data)
+        serializer = EventPostSerializer(data=request.data, context={'request': request})
         if serializer.is_valid():
-            serializer.save()
+            event = serializer.save()
             return Response({
-                'result': serializer.data,
+                'result': EventsDetailSerializer(event, context={'request': request}).data,
                 'description': 'ok'
             })
-        else:
-            return Response({
-                'result':serializer.errors,
-                'description': 'Ошибка валидации'
-                }, 401)
-        
+        return Response({
+            'result': serializer.errors,
+            'description': 'not valid date'
+        }, 400)
+    
+
 class SubscriberManage(APIView):
     def put(self, request:Request):
         '''
