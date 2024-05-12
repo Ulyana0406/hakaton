@@ -34,15 +34,21 @@ class Profiles(models.Model):
         verbose_name = 'Профиль'
         verbose_name_plural = 'Профили'
     TYPES = (
-        ('Студент', 'Студент'),
-        ('Преподаватель', 'Преподаватель'),
-        ('Бизнес', 'Бизнес')
+        (0, 'Студент'),
+        (1, 'Преподаватель'),
+        (2, 'Бизнес')
     )
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile', verbose_name='Логин')
-    type = models.CharField(max_length=100, choices=TYPES, verbose_name='Тип учетной записи')
+    type = models.IntegerField(choices=TYPES, verbose_name='Тип учетной записи')
     firstname = models.CharField(max_length=100, verbose_name='Фамилия')
     secondname = models.CharField(max_length=100, verbose_name='Имя')
     therename = models.CharField(max_length=100, verbose_name='Отчество')
+    avatar = models.ImageField(
+        'Аватар', 
+        upload_to='avatars', 
+        null=True, 
+        default=None,
+        blank=True)
 
 class Teachers(models.Model):
     class Meta:
