@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect   } from 'react';
 import Calendar from "./Calendar";
 import styles from "./CreateEvent.module.scss";
@@ -90,3 +91,4 @@ const CreateEvent: React.FC<ICreateEventProps> = () => {
 }
 
 export default CreateEvent;
+
