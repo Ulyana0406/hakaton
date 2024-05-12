@@ -1,11 +1,12 @@
-import React, { useState, useRef, useEffect   } from 'react';
+
+import React, { useState, useRef  } from 'react';
 import Calendar from "./Calendar";
 import styles from "./CreateEvent.module.scss";
 import TimePicker from './TimerPick';
 import TimePickerEnd from './TimerPickEnd';
 import ChooseCoworking from './ChooseCoworking'
 import { Navigation} from 'swiper/modules';
-import { Swiper, SwiperSlide, SwiperRef } from 'swiper/react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 // Import Swiper styles
 import 'swiper/css';
@@ -90,3 +91,4 @@ const CreateEvent: React.FC<ICreateEventProps> = () => {
 }
 
 export default CreateEvent;
+
