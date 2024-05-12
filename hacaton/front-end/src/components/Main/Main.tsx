@@ -1,6 +1,7 @@
 import styles from "./Main.module.scss";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import Cookies from "js-cookie";
 const MainPage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -18,24 +19,24 @@ const MainPage = () => {
   const RedirectProjects = () => {
     navigate("projects");
   };
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          "https://itis-projects.ivgpu.ru/api/projects/typelist"
-        );
-        if (!response.ok) {
-          throw new Error("Ошибка при получении данных");
-        }
-        const data = await response.json();
-        console.log("Наши данные", data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
-  }, []);
-
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await fetch(
+  //         "https://itis-projects.ivgpu.ru/api/projects/typelist"
+  //       );
+  //       if (!response.ok) {
+  //         throw new Error("Ошибка при получении данных");
+  //       }
+  //       const data = await response.json();
+  //       console.log("Наши данные", data);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   fetchData();
+  // }, []);
+  console.log(Cookies.get("sessionid"));
   return (
     <div className={styles.main}>
       <div className={styles.blok}>
@@ -150,7 +151,7 @@ const MainPage = () => {
             </div>
           </div>
           <div className={styles.cowork}>
-            <img className={styles.coworkImg} src="latestEvent.png" alt="" />
+            <img className={styles.coworkImg} src="latestEvent2.png" alt="" />
             <h2 className={styles.latestEventsH}>
               Название <br></br> мероприятия
             </h2>
@@ -172,7 +173,7 @@ const MainPage = () => {
             </div>
           </div>
           <div className={styles.cowork}>
-            <img className={styles.coworkImg} src="latestEvent.png" alt="" />
+            <img className={styles.coworkImg} src="latestEvent3.png" alt="" />
             <h2 className={styles.latestEventsH}>
               Название <br></br> мероприятия
             </h2>
@@ -195,99 +196,50 @@ const MainPage = () => {
           </div>
         </div>
       </div>
+
       <div className={styles.blok}>
-        <h1 className={styles.h1}>COWORKING</h1>
-        <div className={styles.coworks}>
-          <div className={styles.cowork}>
-            <img className={styles.coworkImg} src="cowork.png" alt="" />
+        <h1 className={styles.h1}>ПРОЕКТЫ</h1>
 
-            <p className={styles.eventsp}>
-              Сюда можно поместить самое ближайшее мероприятие <br></br> Сюда
-              можно поместить самое ближайшее мероприятие Сюда можно поместить
-              самое ближайшее мероприятие <br></br> Сюда можно поместить самое
-              ближайшее мероприятие{" "}
-            </p>
-            <div className={styles.eventsButtons}>
-              <button className={styles.firstButton}>01.06.2024</button>
-              <button className={styles.secondButton}>17:55</button>
-            </div>
-          </div>
-          <div className={styles.cowork}>
-            <img className={styles.coworkImg} src="cowork.png" alt="" />
-
-            <p className={styles.eventsp}>
-              Сюда можно поместить самое ближайшее мероприятие <br></br> Сюда
-              можно поместить самое ближайшее мероприятие Сюда можно поместить
-              самое ближайшее мероприятие <br></br> Сюда можно поместить самое
-              ближайшее мероприятие{" "}
-            </p>
-            <div className={styles.eventsButtons}>
-              <button className={styles.firstButton}>01.06.2024</button>
-              <button className={styles.secondButton}>17:55</button>
-            </div>
-          </div>
-          <div className={styles.cowork}>
-            <img className={styles.coworkImg} src="cowork.png" alt="" />
-
-            <p className={styles.eventsp}>
-              Сюда можно поместить самое ближайшее мероприятие <br></br> Сюда
-              можно поместить самое ближайшее мероприятие Сюда можно поместить
-              самое ближайшее мероприятие <br></br> Сюда можно поместить самое
-              ближайшее мероприятие{" "}
-            </p>
-            <div className={styles.eventsButtons}>
-              <button className={styles.firstButton}>01.06.2024</button>
-              <button className={styles.secondButton}>17:55</button>
-            </div>
-          </div>
-        </div>
-        <div className={styles.blockButtons}>
-          <button className={styles.allButton}>Посмотреть всё</button>
-        </div>
-        <div className={styles.blok}>
-          <h1 className={styles.h1}>ПРОЕКТЫ</h1>
-
-          <div className={styles.projects}>
-            <div onClick={RedirectProjects} className={styles.project}>
-              <button className={styles.projectButton}>
-                Коммерческие проекты <img src="click.png" alt="" />
-              </button>
-            </div>
-            <div onClick={RedirectProjects} className={styles.project}>
-              <button className={styles.projectButtonStart}>
-                Научные проекты <img src="clickstart.png" alt="" />
-              </button>
-            </div>
-            <div onClick={RedirectProjects} className={styles.project}>
-              <button className={styles.projectButton}>
-                Некоммерческие проекты <img src="click.png" alt="" />
-              </button>
-            </div>
-            <div onClick={RedirectProjects} className={styles.project}>
-              <button className={styles.projectButtonStart}>
-                Стратап проекты <img src="clickstart.png" alt="" />
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className={styles.blok}>
-          <div className={styles.createProject}>
-            <img className={styles.createback} src="create.jpg" alt="" />
-            <h1 className={styles.createH}>СОЗДАЙ СВОЙ ПРОЕКТ</h1>
-            <text className={styles.createText}>
-              Вы можете создать свой проект Вы можете создать свой проект
-              <br></br>
-              Вы можете создать свой проект Вы можете создать свой проект
-              <br></br>
-              Вы можете создать свой проект Вы можете создать свой проект
-              <br></br>
-              Вы можете создать свой проект Вы можете создать свой проект
-              <br></br>
-            </text>
-            <button onClick={RedirectCreate} className={styles.createButton}>
-              Создать
+        <div className={styles.projects}>
+          <div onClick={RedirectProjects} className={styles.project}>
+            <button className={styles.projectButton}>
+              Коммерческие проекты <img src="click.png" alt="" />
             </button>
           </div>
+          <div onClick={RedirectProjects} className={styles.project}>
+            <button className={styles.projectButtonStart}>
+              Научные проекты <img src="clickstart.png" alt="" />
+            </button>
+          </div>
+          <div onClick={RedirectProjects} className={styles.project}>
+            <button className={styles.projectButton}>
+              Некоммерческие проекты <img src="click.png" alt="" />
+            </button>
+          </div>
+          <div onClick={RedirectProjects} className={styles.project}>
+            <button className={styles.projectButtonStart}>
+              Стратап проекты <img src="clickstart.png" alt="" />
+            </button>
+          </div>
+        </div>
+      </div>
+      <div className={styles.blok}>
+        <div className={styles.createProject}>
+          <img className={styles.createback} src="create.jpg" alt="" />
+          <h1 className={styles.createH}>СОЗДАЙ СВОЙ ПРОЕКТ</h1>
+          <text className={styles.createText}>
+            Вы можете создать свой проект Вы можете создать свой проект
+            <br></br>
+            Вы можете создать свой проект Вы можете создать свой проект
+            <br></br>
+            Вы можете создать свой проект Вы можете создать свой проект
+            <br></br>
+            Вы можете создать свой проект Вы можете создать свой проект
+            <br></br>
+          </text>
+          <button onClick={RedirectCreate} className={styles.createButton}>
+            Создать
+          </button>
         </div>
       </div>
     </div>
