@@ -331,7 +331,7 @@ POST api/projects/item - Добавление нового проекта
 |:-:|:-:|:-:|:-|
 | **project_name** | да | string | Название проекта |
 | **project_description** | да | string | Описание проекта |
-| **project_author** | нет | integer | Подставляется автоматически |
+| **project_author** | нет | integer | Подставляется автоматически берется состояние текущего пользователя |
 | **project_type** | да | integer | Смотреть /api/projects/typelist |
 
 
