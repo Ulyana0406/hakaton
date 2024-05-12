@@ -1,0 +1,58 @@
+.formtable{
+    .nameevent, .typeevent{
+        padding-bottom: 10px;
+        font-size: 24px;
+        label{
+            //padding-right: calc(327px - 224px);
+            margin-right: 70px;
+        }
+        input{
+            width: 830px;
+            height: 29px;
+            border: none;
+            font-size: 24px;
+            color: rgb(0,0,0, 0.5);
+            &:focus-visible{
+                border: none;
+                outline: none;
+            }
+        }
+    }
+    .typeevent{
+        label{
+            padding-right: 75.61px;
+        }
+    }
+    .description{
+        border: 1px solid #1464F6;
+        border-radius: 30px;
+        padding: 20px 15px;
+        font-size: 24px;
+        textarea{
+            width: 100%;
+            resize: none;
+            border: none;
+            height: 74px;
+            font-size: 16px;
+            color: rgb(0,0,0, 0.5);
+        }
+        .title{
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 15px;
+        }
+    }
+    .line{
+        margin-bottom: 40px;
+        width: 100%;
+        border-bottom: 2px solid #1464F6;
+    }
+    .btn{
+        border: none;
+        background-color: #D757F6;
+        color: #fff;
+        padding: 24px 85px;
+        border-radius: 20px;
+        font-size: 25px;
+    }
+}

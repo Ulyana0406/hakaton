@@ -1,0 +1,82 @@
+.header {
+  font-size: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #4E4E4E;
+  margin-top: 25px;
+}
+
+.timeSelection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 20px 33px;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.timeEntry {
+  margin-right: 40px;
+  display: block;
+  align-items: center;
+  justify-content: space-between;
+  &:last-child{
+    margin-right: 0;
+  }
+}
+
+.selectedTime {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 24px;
+  color: #D757F6;
+  margin-bottom: 30px;
+}
+
+.time{
+  font-size: 24px;
+  text-align: end;
+}
+
+.title{
+  font-size: 20px;
+  color: #1464F6;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.timeSelection{
+  display: flex;
+}
+
+.timeconteinerh, .timeconteinerm{
+  width: 115px;
+  display: flex;
+  border-bottom: 1px solid #4E4E4E;
+  margin-bottom: 15px;
+  justify-content: space-between;
+  label{
+    flex-shrink: 0; /* Метка не сжимается */
+    white-space: nowrap; /* Текст метки не переносится на новую строку */
+    overflow: hidden; /* Скрываем текст, если он выходит за пределы блока */
+    text-overflow: ellipsis; /* Добавляем многоточие, если текст не помещается */
+  }
+  input{
+    font-size: 16px;
+    width: 20px;
+    color: #1464F6;
+    align-items: end;
+    flex-grow: 1; /* Поле ввода занимает все доступное пространство */
+    border: none; /* Убираем рамку */
+    outline: none; /* Убираем контур фокуса */
+    line-height: normal; /* Нормализуем высоту строки */
+    &::-webkit-inner-spin-button,&::-webkit-outer-spin-button{
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    &::-ms-clear, &::-ms-reveal{
+      display: none;
+    }
+  }
+}

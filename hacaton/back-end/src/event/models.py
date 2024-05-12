@@ -38,7 +38,7 @@ class Event(models.Model):
         Auditories, 
         models.CASCADE, 
         verbose_name='Место проведения', 
-        related_name='events', 
+        related_name='place_event', 
         null=True, 
         default=None
     )
@@ -48,7 +48,9 @@ class Event(models.Model):
         verbose_name='Логин')
     extra_data = models.JSONField(
         verbose_name='Дополнительные данные', 
-        default=dict
+        default=dict,
+        null=True,
+        blank=True
     )
 
 class Event_Subscribers(models.Model):

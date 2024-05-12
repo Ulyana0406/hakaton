@@ -9,6 +9,7 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 from .filters import ProjectFilter, TypeProjectsFilter
 from django_filters.rest_framework import DjangoFilterBackend
+from core.settings import NoCSRF, BaseAuthentication
 
 class ProjectsList(ViewSet):
     queryset = Projects.objects.all()

@@ -1,0 +1,111 @@
+.header {
+  font-size: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #4E4E4E;
+  margin-top: 25px;
+}
+
+.mdarrow{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 11px;
+}
+
+.arrow_container{
+  display: flex;
+  align-items: center;
+}
+
+.month_year {
+  font-size: 18px;
+}
+
+.arrow{
+  width:18px;
+  height:10px;
+  background-image: url("data:image/svg+xml;utf8,<svg width='18' height='10' viewBox='0 0 18 10' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M17.6038 9.6176C17.35 9.86245 17.0059 10 16.6471 10C16.2882 10 15.9441 9.86245 15.6903 9.6176L8.99183 3.15257L2.29334 9.6176C2.03811 9.85551 1.69628 9.98716 1.34147 9.98418C0.986659 9.9812 0.64725 9.84385 0.39635 9.60169C0.145452 9.35954 0.00313489 9.03196 5.07388e-05 8.68951C-0.00303151 8.34706 0.133367 8.01715 0.379869 7.77082L8.0351 0.382398C8.28887 0.137548 8.633 -8.18889e-07 8.99183 -7.87519e-07C9.35066 -7.56149e-07 9.6948 0.137548 9.94856 0.382398L17.6038 7.77082C17.8575 8.01575 18 8.34789 18 8.69421C18 9.04053 17.8575 9.37268 17.6038 9.6176Z' fill='%231464F6'/></svg>");
+  background-repeat: no-repeat;
+}
+.arrowup{
+  margin-right: 26px;
+}
+.arrowdown{
+  transform: rotate(180deg);
+}
+
+
+.day_names {
+  display: grid;
+  grid-template-columns: repeat(7, 22px);
+  text-align: center;
+  font-size: 14px;
+  gap: 8px 26px;
+  margin-bottom: 8px;
+}
+
+.calendar_grid {
+  display: grid;
+  grid-template-columns: repeat(7, 22px);
+  gap: 6px 26px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.calendar_day {
+  height: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  &.selected, &:hover {
+    color: white;
+    &::after{
+      content: "";
+      width: 22px;
+      height: 22px;
+      z-index: -1;
+      border-radius: 5px;
+      position: absolute;
+      background-color: #007BFF;
+    }
+  }
+}
+
+.calendar_day.selected {
+  color: white;
+  &::after{
+    content: "";
+    width: 22px;
+    height: 22px;
+    z-index: -1;
+    border-radius: 5px;
+    position: absolute;
+    background-color: #007BFF;
+  }
+}
+
+.calendar_day:hover {
+  background-color: #007BFF;
+  color: white;
+}
+
+.datechoose{
+  border-radius: 10px;
+  border: 3px solid rgb(20, 100, 246);
+  padding: 10px 15px;
+  width: 100%;
+  height: 100%;
+  margin: 32px 0;
+}
+
+.selected_date {
+  text-align: center;
+  font-size: 24px;
+  color: #D757F6;
+  margin-bottom: 25px;
+}
+
+.empty {
+  visibility: hidden;
+}
