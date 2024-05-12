@@ -1,6 +1,6 @@
 from rest_framework.views import APIView
 from rest_framework.viewsets import ViewSet
-from .models import Event, Event_Subscribers
+from .models import Event, Event_Subscribers, TypeEvents
 from .serializers import EventsDetailSerializer, EventsSerializer, Event_SubcribersSerializer, EventPostSerializer
 from rest_framework.response import Response
 from rest_framework.request import Request
@@ -10,13 +10,19 @@ from django.shortcuts import get_object_or_404
 class EventList(ViewSet):
     queryset = Event.objects.all()
     serializer_class = EventsSerializer
+    
     def list(self, request):
-        data = EventsSerializer(self.queryset, many=True, context={'request':request}).data
+        event_type_id = request.GET.get('type_event')  # Исправление здесь
+
+        if event_type_id:
+            event_type = get_object_or_404(TypeEvents, id=event_type_id)
+            self.queryset = self.queryset.filter(type_event=event_type)  # Исправление здесь
+
+        data = EventsSerializer(self.queryset, many=True, context={'request': request}).data
         return Response({
             'result': data,
             'description': 'ok'
         })
-
 
 class EventAPI(APIView):
     queryset = Event.objects.all()

@@ -7,6 +7,8 @@ class TypeEvents(models.Model):
         verbose_name = 'Тип мероприятия'
         verbose_name_plural = 'Типы мероприятий'
     name = models.CharField('Название типа мероприятия', max_length=100)
+    def __str__(self) -> str:
+        return self.name
 
 class Event(models.Model):
     class Meta:
@@ -16,7 +18,7 @@ class Event(models.Model):
         max_length=100, 
         verbose_name='Название мероприятия'
     )
-    type = models.ForeignKey(
+    type_event = models.ForeignKey(
         TypeEvents,
         models.CASCADE,
         related_name='type_event',
