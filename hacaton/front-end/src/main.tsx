@@ -10,6 +10,7 @@ import AboutProject from "./components/AboutProject/AboutProject";
 import CreateYourProject from "./components/CreateYourProject/CreateYourProject";
 import Projects from "./components/Projects/Projects";
 import CreateEvent from "./components/CreateEvent/CreateEvent";
+import User from "./components/User/User";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: "createevent",
         element: <CreateEvent />,
+      },
+      {
+        path: "userpage",
+        element: <User />,
       },
     ],
   },
