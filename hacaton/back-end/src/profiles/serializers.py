@@ -3,6 +3,8 @@ from .models import *
 from library.serializer import BibliographySerializer
 from event.models import Event_Subscribers
 from projects.models import Projects, Project_Subscribers
+
+
 class EventSerializer(serializers.ModelSerializer):
     title = serializers.SerializerMethodField()
     id = serializers.SerializerMethodField()
