@@ -78,11 +78,12 @@ class Project_Subscribers(models.Model):
         Projects, 
         on_delete=models.CASCADE, 
         verbose_name='Проект', 
-        related_name='project_subscribers'
+        related_name='project_data'
     )
     user = models.ForeignKey(
         Profiles, 
         on_delete=models.CASCADE, 
-        verbose_name='Подписчик'
+        verbose_name='Подписчик',
+        related_name='project_subscribers'
     )
     status = models.IntegerField('Стутус регистрации', choices=STATUS, default=1)

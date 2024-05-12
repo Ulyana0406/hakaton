@@ -8,7 +8,7 @@ class OptionalslashRouter(SimpleRouter):
         self.trailing_slash = '/?'
 
 router = OptionalslashRouter()
-router.register('list', EventList, 'list')
+router.register('list', EventList, 'Eventlist')
 
 urlpatterns = router.urls
 urlpatterns += [

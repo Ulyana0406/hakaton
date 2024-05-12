@@ -1,0 +1,100 @@
+.container {
+    padding-left: calc(50% - 600px);
+    padding-right: calc(50% - 600px);
+}
+.breadcrumbs {
+    display: flex;
+    margin: 40px 0;
+    gap: 10px;
+    align-items: center;
+}
+.arrow {
+    width: 27px;
+}
+.eventA {
+    text-decoration: none;
+    color: black;
+    font-size: 12px;
+    font-weight: bold;
+}
+.eventA2 {
+    text-decoration: none;
+    color: rgb(94, 94, 94);
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.appcontainer {
+    display: flex;
+    margin-bottom: 150px;
+}
+
+.datecontainer, .timecontainer {
+    width: 377px; /* Добавлены единицы измерения px */
+    border-radius: 35px;
+    border: 3px solid rgba(20, 100, 246, 1.0); /* Исправлен порядок свойств в border */
+    padding: 0 17px;
+    &:last-child{
+        padding: 0;
+        border: none;
+        margin-right: 0;
+    }
+    margin-right: 20px;
+}
+
+.bnav{
+    margin-top: 40px;
+    margin-bottom: 150px;
+    display: flex;
+    justify-content: space-between;
+    .allcoworking{
+        padding: 22px;
+        font-size: 25px;
+        border: none;
+        background-color: #1464F6;
+        color: #fff;
+        border-radius: 20px;
+    }
+    .nav{
+        display: flex;
+        width: 110px;
+        justify-content: space-between;
+        .arrow{
+            cursor: pointer;
+            width: 34px;
+            background-image: url("data:image/svg+xml;utf8,<svg width='34' height='60' viewBox='0 0 34 60' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M32.6998 1.91434C33.5323 2.7414 34 3.86299 34 5.03246C34 6.20192 33.5323 7.32351 32.6998 8.15057L10.7187 29.9818L32.6998 51.8131C33.5087 52.6449 33.9563 53.7589 33.9462 54.9153C33.9361 56.0717 33.4691 57.1779 32.6458 57.9956C31.8224 58.8133 30.7087 59.2771 29.5443 59.2872C28.38 59.2972 27.2583 58.8527 26.4208 58.0493L1.30016 33.0999C0.467668 32.2729 1.34207e-06 31.1513 1.29066e-06 29.9818C1.23924e-06 28.8124 0.467667 27.6908 1.30016 26.8637L26.4208 1.91434C27.2535 1.08752 28.3828 0.623046 29.5603 0.623046C30.7378 0.623046 31.8671 1.08752 32.6998 1.91434Z' fill='%231464F6'/></svg>");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .navright{
+            transform: rotate(-180deg);
+        }
+    }
+}
+
+.img{
+    width: 100%;
+    height: 100%;
+    border-radius: 30px 188px 30px 30px;
+    background-image: url('create_event/imgdate.png');
+    background-size: 170%;
+    background-repeat: no-repeat;
+    background-position: top;
+}
+
+.header {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.title{
+    font-size: 60px;
+    color: #1464F6;
+}
+
+.title_line{
+    width: 105px;
+    border-bottom: solid 5px #D757F6;
+    margin-bottom: 40px;
+}

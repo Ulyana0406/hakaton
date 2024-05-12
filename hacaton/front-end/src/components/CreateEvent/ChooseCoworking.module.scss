@@ -1,0 +1,14 @@
+.choosecoworking{
+    width: 377px; /* Добавлены единицы измерения px */
+    border-radius: 35px;
+    border: 3px solid rgba(20, 100, 246, 1.0); /* Исправлен порядок свойств в border */
+    padding: 0 17px;
+    display: block;
+}
+
+.title_not_choose{
+    text-align: center;
+    color: #1464F6;
+    margin: 261px 0;
+    font-size: 24px;
+}
