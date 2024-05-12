@@ -1,10 +1,11 @@
 from rest_framework import serializers
 from .models import *
-from profiles.serializers import ProfilesSerializer
+from profiles.serializers import ShortProfilesSerializer
+from coworking.serializers import AuditoriesSerializers
 
 
 class Event_SubcribersSerializer(serializers.ModelSerializer):
-    user = ProfilesSerializer()
+    user = ShortProfilesSerializer()
     class Meta:
         model = Event_Subscribers
         fields = (
@@ -13,16 +14,37 @@ class Event_SubcribersSerializer(serializers.ModelSerializer):
             'status'
         )
 
+class EventPostSerializer(serializers.ModelSerializer):
+    user = serializers.PrimaryKeyRelatedField(read_only=True)
+    def create(self, validated_data):
+        # Устанавливаем пользователя автоматически из контекста запроса
+        print(self.context['request'].user.profile.id)
+        validated_data['user'] = self.context['request'].user.profile
+        return super().create(validated_data)
+
+    class Meta:
+        model = Event
+        fields = ( 
+            'name', 
+            'type', 
+            'short_description', 
+            'description',
+            'start_event', 
+            'end_event',
+            'place_event', 
+            'user',
+            'extra_data', 
+        )
+
 class EventsDetailSerializer(serializers.ModelSerializer):
     event_subscribers = Event_SubcribersSerializer(many=True, required=False)
     isowner = serializers.SerializerMethodField()
     issub = serializers.SerializerMethodField()
     avatar = serializers.SerializerMethodField()
-    user = serializers.PrimaryKeyRelatedField(read_only=True)
-    def create(self, validated_data):
-        # Устанавливаем пользователя автоматически из контекста запроса
-        validated_data['user'] = self.context['request'].user.profile
-        return super().create(validated_data)
+    user = serializers.SerializerMethodField()
+    place_event = AuditoriesSerializers()
+    def get_user(self, instance:Event):
+        return ShortProfilesSerializer(instance.user).data
     def get_issub(self, instance:Event):
         user = instance.event_subscribers.filter(user=self.context['request'].user.profile)
         return bool(user)
