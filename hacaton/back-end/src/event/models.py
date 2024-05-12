@@ -2,23 +2,27 @@ from django.db import models
 from profiles.models import Profiles
 from coworking.models import Auditories
 
+class TypeEvents(models.Model):
+    class Meta: 
+        verbose_name = 'Тип мероприятия'
+        verbose_name_plural = 'Типы мероприятий'
+    name = models.CharField('Название типа мероприятия', max_length=100)
+    def __str__(self) -> str:
+        return self.name
+
 class Event(models.Model):
     class Meta:
         verbose_name = 'Мероприятие'
         verbose_name_plural = 'Мероприятия'
-    TYPES = (
-        (0, 'Академические'),
-        (1, 'Культурные и общественные'),
-        (2, 'Спортивные'),
-        (3, 'Образовательные')
-    )
     name = models.CharField(
         max_length=100, 
         verbose_name='Название мероприятия'
     )
-    type = models.IntegerField(
-        'Тип мероприятия',
-        choices=TYPES,
+    type_event = models.ForeignKey(
+        TypeEvents,
+        models.CASCADE,
+        related_name='type_event',
+        verbose_name='Тип мероприятия',
     ) 
     short_description = models.CharField(
         'Краткое описание',

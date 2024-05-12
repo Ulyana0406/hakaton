@@ -7,7 +7,7 @@ from django.shortcuts import get_object_or_404
 from rest_framework import permissions
 from .models import Profiles
 from .serializers import ProfilesSerializer, ShortProfilesSerializer
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from core.settings import NoCSRF, BaseAuthentication
 
 
@@ -72,6 +72,11 @@ class UserInfo(APIView):
                 'result': None,
                 'description': 'Не существует пользователя'
             }, status=status.HTTP_403_FORBIDDEN)
-        #ProfilesSerializer(qveryset, many=True)
-        #api для всех приложений
-        #post на создание новых объектов
+        
+    def delete(self, req: Request):
+        # Вызываем функцию logout для текущего запроса
+        logout(req)
+        return Response({
+            'result': None,
+            'description': 'Вы успешно вышли из аккаунта'
+        }, status=status.HTTP_204_NO_CONTENT)
