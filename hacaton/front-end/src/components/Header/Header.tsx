@@ -9,7 +9,7 @@ function Header() {
     navigate("/");
   };
   const [isActive, setActive] = useState(false);
-
+  const authData = JSON.parse(localStorage.getItem("authData"));
   return (
     <>
       <div className={styles.header}>
@@ -24,12 +24,17 @@ function Header() {
           </a>
         </div>
         <div className={styles.headerButtons}>
-          <button
-            onClick={() => setActive(true)}
-            className={styles.enterButton}
-          >
-            Вход
-          </button>
+          {authData ? (
+            <button
+              onClick={() => setActive(true)}
+              className={styles.enterButton}
+            >
+              Вход
+            </button>
+          ) : (
+            <></>
+          )}
+
           <button className={styles.registerButton}>Регистрация</button>
         </div>
       </div>
