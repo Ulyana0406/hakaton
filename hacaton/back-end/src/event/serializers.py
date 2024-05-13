@@ -1,8 +1,16 @@
 from rest_framework import serializers
-from .models import *
+from .models import Event_Subscribers, Event, TypeEvents
 from profiles.serializers import ShortProfilesSerializer
 from coworking.serializers import AuditoriesSerializers
 
+
+class TypeEventsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TypeEvents
+        fields = (
+            'id',
+            'name'
+        )
 
 class Event_SubcribersSerializer(serializers.ModelSerializer):
     user = ShortProfilesSerializer()
@@ -16,6 +24,7 @@ class Event_SubcribersSerializer(serializers.ModelSerializer):
 
 class EventPostSerializer(serializers.ModelSerializer):
     user = serializers.PrimaryKeyRelatedField(read_only=True)
+    #type_event = TypeEventsSerializer()
     def create(self, validated_data):
         # Устанавливаем пользователя автоматически из контекста запроса
         print(self.context['request'].user.profile.id)
@@ -26,7 +35,7 @@ class EventPostSerializer(serializers.ModelSerializer):
         model = Event
         fields = ( 
             'name', 
-            'type', 
+            'type_event', 
             'short_description', 
             'description',
             'start_event', 
@@ -43,6 +52,7 @@ class EventsDetailSerializer(serializers.ModelSerializer):
     avatar = serializers.SerializerMethodField()
     user = serializers.SerializerMethodField()
     place_event = AuditoriesSerializers()
+    type_event = TypeEventsSerializer()
     def get_user(self, instance:Event):
         return ShortProfilesSerializer(instance.user).data
     def get_issub(self, instance:Event):
@@ -58,34 +68,38 @@ class EventsDetailSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Event
-        fields = ('id', 
-                  'name', 
-                  'type', 
-                  'short_description', 
-                  'description',
-                  'start_event', 
-                  'end_event',
-                  'avatar', 
-                  'place_event', 
-                  'user',
-                  'isowner',
-                  'extra_data', 
-                  'issub',
-                  'event_subscribers'
-                )
+        fields = (
+            'id', 
+            'name', 
+            'type_event', 
+            'short_description', 
+            'description',
+            'start_event', 
+            'end_event',
+            'avatar', 
+            'place_event', 
+            'user',
+            'isowner',
+            'extra_data', 
+            'issub',
+            'event_subscribers'
+        )
 
 class EventsSerializer(serializers.ModelSerializer):
     issub = serializers.SerializerMethodField()
+    type_event = TypeEventsSerializer()
     def get_issub(self, instance:Event):
         user = instance.event_subscribers.filter(user=self.context['request'].user.profile)
         return bool(user)
     
     class Meta:
         model = Event
-        fields = ('id', 
-                  'name', 
-                  'short_description', 
-                  'start_event', 
-                  'avatar', 
-                  'issub'
-                )
+        fields = (
+            'id', 
+            'name', 
+            'type_event',
+            'short_description', 
+            'start_event', 
+            'avatar', 
+            'issub'
+        )
