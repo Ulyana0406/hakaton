@@ -9,12 +9,12 @@ function Header() {
     navigate("/");
   };
   const [isActive, setActive] = useState(false);
-  
+
   return (
     <>
       <div className={styles.header}>
         <Modaly isActive={isActive} setActive={setActive} />
-        <img onClick={redirectMain} src="Лого.png" alt="" />
+        <img onClick={redirectMain} src="ПолITех1.svg" alt="" />
         <div className={styles.headerhrefs}>
           <a className={styles.hrefs} href="events">
             Мероприятия

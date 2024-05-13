@@ -8,16 +8,13 @@ function Footer() {
   return (
     <>
       <div className={styles.footer}>
-        <img onClick={redirectMain} src="Логофутер.png" alt="" />
+        <img onClick={redirectMain} src="ПолITех.svg" alt="" />
         <div className={styles.headerhrefs}>
           <a className={styles.fhrefs} href="events">
             Мероприятия
           </a>
-          <a className={styles.fhrefs} href="">
+          <a className={styles.fhrefs} href="createevent">
             Coworking
-          </a>
-          <a className={styles.fhrefs} href="">
-            Бронирование
           </a>
         </div>
         <div className={styles.headerButtons}>

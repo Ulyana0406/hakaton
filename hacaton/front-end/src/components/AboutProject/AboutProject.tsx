@@ -47,6 +47,9 @@ const AboutProject = () => {
             type="tel"
           />
         </div>
+        <div className={styles.Button}>
+          <button className={styles.allButton}>присоединиться к проекту</button>
+        </div>
         <div className={styles.comments}>
           <text className={styles.H}>КОММЕНТАРИИ</text>
           <div className={styles.lineH}></div>
