@@ -5,6 +5,8 @@ from .serializers import EventsDetailSerializer, EventsSerializer, Event_Subcrib
 from rest_framework.response import Response
 from rest_framework.request import Request
 from django.shortcuts import get_object_or_404
+from django.utils import timezone
+
 
 
 class EventList(ViewSet):
@@ -13,7 +15,9 @@ class EventList(ViewSet):
     
     def list(self, request):
         event_type_id = request.GET.get('type_event')  # Исправление здесь
-
+        sort_date = request.GET.get('sort_data')
+        if sort_date:
+            self.queryset = self.queryset.filter(start_date__gte=timezone.now()).order_by('start_event')
         if event_type_id:
             event_type = get_object_or_404(TypeEvents, id=event_type_id)
             self.queryset = self.queryset.filter(type_event=event_type)  # Исправление здесь
