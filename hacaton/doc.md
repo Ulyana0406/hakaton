@@ -351,6 +351,7 @@ POST /api/projects/item/sub_create
 | **project_id** | да | integer | |
 | **user_id** | да | integer | |
 
+
 ## Добавление комментария к проекту
 
 Метод требует авторизации. Пользователь добавляет комментарий к проекту
@@ -365,7 +366,14 @@ POST /api/projects/item/comment_create
 |:-:|:-:|:-:|:-|
 | **project_id** | да | integer | |
 | **comment** | да | string | |
-_________
+
+```json
+{
+    "project_id": 1,
+    "comment": "comment",
+}
+```
+
 # Работа с мероприятием
 
 ## Получение информации о списке мероприятий

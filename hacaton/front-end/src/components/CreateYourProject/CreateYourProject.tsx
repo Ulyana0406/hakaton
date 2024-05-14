@@ -7,19 +7,19 @@ const CreateYourProject = () => {
   return (
     <div className={styles.createProject}>
       <div className={styles.createProjectH}>
-        <text className={styles.H}>СОЗДАЙ</text>{" "}
-        <text className={styles.H2}>СВОЙ</text>
-        <br></br>
-        <text className={styles.H}>ПРОЕКТ</text>
+        <div className={styles.H}>СОЗДАЙ</div>{" "}
+        <div className={styles.H2}>СВОЙ</div>
       </div>
-      <div className={styles.createProjectText}>
+      <div className={styles.H}>ПРОЕКТ</div>
+
+      <text className={styles.createProjectText}>
         У вас есть уникальная возможность создать свой проект У вас есть
         уникальная возможность создать свой проект <br></br> У вас есть
         уникальная возможность создать свой проект У вас есть уникальная
         возможность создать свой проект <br></br> У вас есть уникальная
         возможность создать свой проект У вас есть уникальная возможность
         создать свой проект <br></br>
-      </div>
+      </text>
       <div className={styles.createProjectInfo}>
         <div className={styles.Projectform}>
           <input

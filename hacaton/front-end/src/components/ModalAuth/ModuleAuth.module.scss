@@ -1,13 +1,11 @@
-.dialog {
-  margin-top: 863px;
+.container{
   background: none;
   border: none;
-  margin-left: 689px;
+  z-index: 2;
 }
 
 .modalButtons {
-  position: absolute;
-  z-index: 1000000;
+  z-index: 10;
   width: 278px;
   height: 52px;
   background-color: transparent;
@@ -28,19 +26,24 @@
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  margin-top: 622px;
-  margin-left: 787px;
 }
 .closeButton {
-  width: 41px;
-  margin-left: 451px;
-  background-color: transparent;
   border: none;
+  height: 35px;
+  width: 35px;
+  background-image: url('/cross.svg');
+  background-size: cover;
+  background-position: center;
+  background-color: unset;
+  background-repeat: no-repeat;
+  cursor: pointer;
 }
+
 .modal {
   box-shadow: 0 0 500px 500px rgb(101 101 101 / 37%);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   gap: 20px;
   width: 460px;
   height: 500px;
@@ -48,6 +51,7 @@
   gap: 24px;
   border-radius: 16px;
   background: rgb(197 216 255);
+  justify-content: space-between;
 }
 .enter {
   color: rgb(86, 84, 255);
@@ -65,6 +69,7 @@
 }
 .inputDiv {
   display: flex;
+  width: 100%;
   flex-direction: column;
 }
 .input {
@@ -126,7 +131,6 @@
   gap: 10px;
 }
 .socialButton {
-  font-family: "Onest", sans-serif;
   font-size: 16px;
   font-weight: 500;
   line-height: 24px;

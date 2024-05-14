@@ -1,17 +1,14 @@
 .main {
-  padding-left: calc(50% - 600px);
-  padding-right: calc(50% - 600px);
+  padding: 0 calc(50% - 620px);
 }
 
 .blok {
-  margin-top: 170px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
   position: relative;
-  display: flex;
   max-height: 100%;
   height: 100%;
+  margin-bottom: 145px;
 }
 .h1 {
   font-size: 60px;
@@ -20,40 +17,66 @@
   color: rgba(20, 100, 246, 1);
 }
 .allButton {
-  margin-top: 72px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Montserrat";
-  font-weight: bold;
-  font-size: 20px;
+  margin-top: 64px;
+  font-weight: 600;
+  padding: 24px;
+  font-size: 25px;
   color: white;
-  height: 61px;
-  width: 221px;
-  border-radius: 13px;
+  border-radius: 20px;
   border: none;
   background-color: rgba(20, 100, 246, 1);
   cursor: pointer;
 }
 .mainEvent {
-  height: 580px;
-  width: 441px;
-  border: solid 3px;
+  width: 496px;
+  border: solid 3px rgba(20, 100, 246, 1);
   border-radius: 30px;
-  border-color: rgba(20, 100, 246, 1);
+  padding: 30px 28px 30px 29px;
 }
-.events {
+.event_container {
   margin-top: 50px;
   display: flex;
   gap: 70px;
+  display: flex;
+  .event_list{
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Создаёт две колонки */
+    grid-template-rows: auto auto; /* Создаёт две строки, высота которых адаптируется под содержимое */
+    gap: 56px 34px; /* Устанавливает расстояние между колонками и строками */
+    padding: 10px; /* Отступы внутри контейнера */
+    .event_item{
+      width: 277px;
+      height: 229px;
+      .img{
+        background-color: #4E4E4E;
+        width: 277px;
+        height: 157px;
+        border-radius: 30px;
+      }
+      .datetime{
+        display: flex;
+        gap: 18px;
+        font-weight: 700;
+        margin: 10px 0 5px 0;
+      }
+      .text{
+        width: 100%;
+        font-size: 14px;
+        font-weight: normal;
+      }
+    }
+  }
 }
 .eventph {
-  margin: 15px;
-  width: 399px;
-  height: 250px;
+  width: 100%;
+  height: 255px;
+  border-radius: 50px;
 }
 .eventsp {
-  margin-left: 15px;
+  margin: 34px 0 50px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #4E4E4E;
 }
 .line {
   border: solid 1px;
@@ -67,8 +90,6 @@
   grid-template-rows: repeat(2, 1fr);
 }
 .eventsButtons {
-  margin-top: 65px;
-  margin-left: 15px;
   display: flex;
   gap: 25px;
 }
@@ -76,7 +97,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Montserrat";
   font-weight: bold;
   font-size: 12px;
   color: white;
@@ -91,7 +111,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Montserrat";
   font-weight: bold;
   font-size: 12px;
   color: white;
@@ -141,6 +160,7 @@
     width: 355px;
   }
 }
+
 .blockButtons {
   display: flex;
   margin-left: -900px;
@@ -167,7 +187,6 @@
     color: rgba(20, 100, 246, 1);
     gap: 10px;
     background-color: white;
-    font-family: "Montserrat";
     font-weight: bold;
     font-size: 20px;
     width: 355px;
@@ -182,7 +201,6 @@
       color: white;
       gap: 10px;
       background-color: rgba(20, 100, 246, 1);
-      font-family: "Montserrat";
       font-weight: bold;
       font-size: 20px;
       width: 355px;
@@ -195,6 +213,42 @@
   }
 }
 
+.createProjectContainer {
+  display: flex;
+  background-image: url(/create.png);
+  width: 52em;
+  background-repeat: no-repeat;
+  height: 30em;
+  color: #fff;
+  font-size: 25px;
+  margin-bottom: 87px;
+  .Container {
+    cursor: pointer;
+    padding: 151px 52px;
+  }
+  .description {
+    display: flex;
+    height: 112px;
+    width: 737px;
+    font-weight: 500;
+    margin-bottom: 34px;
+  }
+  .title {
+    font-size: 60px;
+    font-family: "bowler";
+    margin-bottom: 40px;
+  }
+  .btn {
+    color: #fff;
+    background-color: #d757f6;
+    padding: 20px 52px 21px 51px;
+    border-radius: 20px;
+    border: none;
+    font-size: 25px;
+    font-weight: 500;
+  }
+}
+
 .createProject {
   display: flex;
   flex-direction: column;
@@ -203,33 +257,19 @@
 .createH {
   font-weight: 600;
   font-size: 60px;
-  color: rgba(20, 100, 246, 1);
+  color: rgb(255 255 255);
   position: absolute;
   margin-left: 46px;
-  margin-top: 65px;
+  margin-top: 159px;
 }
 .createText {
-  padding-top: 160px;
+  color: rgb(255 255 255);
+  padding-top: 252px;
   padding-left: 47px;
   position: absolute;
 }
 .createButton {
-  margin-left: 45px;
-  position: absolute;
-  margin-top: 354px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Montserrat";
-  font-weight: bold;
-  font-size: 20px;
-  color: white;
-  height: 61px;
-  width: 221px;
-  border-radius: 13px;
-  border: none;
-  background-color: rgba(20, 100, 246, 1);
-  cursor: pointer;
+  display: block;
 }
 .latestEvents {
   display: flex;
@@ -286,7 +326,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Montserrat";
   font-weight: bold;
   font-size: 22px;
   color: white;

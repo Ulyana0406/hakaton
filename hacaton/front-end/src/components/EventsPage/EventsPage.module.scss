@@ -1,21 +1,32 @@
-.eventPage {
-  padding-left: calc(50% - 600px);
-  padding-right: calc(50% - 600px);
-}
-.breadCrums {
+// .eventPage {
+//   padding-left: calc(50% - 600px);
+//   padding-right: calc(50% - 600px);
+// }
+.breadcrumbs {
   display: flex;
-  margin-top: 30px;
+  margin-bottom: 40px;
   gap: 10px;
   align-items: center;
 }
 .arrow {
   width: 27px;
 }
+.eventA {
+  text-decoration: none;
+  color: black;
+  font-size: 12px;
+  font-weight: bold;
+}
+.eventA2 {
+  text-decoration: none;
+  color: rgb(94, 94, 94);
+  font-size: 12px;
+  font-weight: bold;
+}
 .blok {
   margin-top: 63px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   position: relative;
   display: flex;
   max-height: 100%;
@@ -57,11 +68,9 @@
   font-weight: bold;
   color: rgb(20, 100, 246);
   font-size: 38px;
-  margin-left: -899px;
 }
 .lineH {
   margin-top: 12px;
-  margin-left: -1077px;
   border: solid 8px;
   width: 133px;
   border-color: rgb(183, 60, 240);
@@ -87,11 +96,13 @@
   gap: 50px;
   align-items: center;
   margin-top: 20px;
+  font-size: 0.9rem;
 }
 .eventsTime {
   margin-top: 20px;
   margin-left: 25px;
   display: flex;
+  font-size: 0.9rem;
   gap: 50px;
   align-items: center;
 }
@@ -99,7 +110,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Montserrat";
   font-weight: bold;
   font-size: 22px;
   color: white;
@@ -114,7 +124,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Montserrat";
   font-weight: bold;
   font-size: 20px;
   color: white;
@@ -150,7 +159,7 @@
   display: flex;
   flex-direction: column;
   &H {
-    font-size: 30px;
+    font-size: 1.3rem;
     color: black;
   }
 }
@@ -158,16 +167,4 @@
   margin-top: 13px;
   font-size: 20px;
   color: black;
-}
-.eventA {
-  text-decoration: none;
-  color: black;
-  font-size: 20px;
-  font-weight: bold;
-}
-.eventA2 {
-  text-decoration: none;
-  color: rgb(94, 94, 94);
-  font-size: 20px;
-  font-weight: bold;
 }

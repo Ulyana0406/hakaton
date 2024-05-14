@@ -1,14 +1,23 @@
 import styles from "./AboutProject.module.scss";
 import { useEffect } from "react";
+interface AuthData {
+  result: {
+    firstname: string;
+    secondname: string;
+    avatar: string;
+  };
+}
 const AboutProject = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  const storedData = localStorage.getItem("authData");
+  const authData: AuthData | null = storedData ? JSON.parse(storedData) : null;
   return (
     <div className={styles.aboutProject}>
       <div className={styles.createProjectH}>
-        <text className={styles.H}>НАЗВАНИЕ</text> <br></br>
-        <text className={styles.H2}>ПРОЕКТА</text>
+        <div className={styles.H}>НАЗВАНИЕ</div> <br></br>
+        <div className={styles.H2}>ПРОЕКТА</div>
       </div>
       <div className={styles.projectInfo}>
         <div className={styles.createProjectText}>
@@ -28,7 +37,7 @@ const AboutProject = () => {
         <img src="aboutproject.png" alt="" />
       </div>
       <div className={styles.participant}>
-        <text className={styles.H}>УЧАСТНИКИ</text>
+        <div className={styles.H}>УЧАСТНИКИ</div>
         <div className={styles.lineH}></div>
         <div className={styles.Projectform}>
           <input
@@ -51,7 +60,7 @@ const AboutProject = () => {
           <button className={styles.allButton}>присоединиться к проекту</button>
         </div>
         <div className={styles.comments}>
-          <text className={styles.H}>КОММЕНТАРИИ</text>
+          <div className={styles.H}>КОММЕНТАРИИ</div>
           <div className={styles.lineH}></div>
           <div className={styles.commentsBlok}>
             <div className={styles.comment}>
@@ -95,9 +104,13 @@ const AboutProject = () => {
             </div>
           </div>
         </div>
-        <div className={styles.Button}>
-          <button className={styles.allButton}>добавить отзыв</button>
-        </div>
+        {!authData ? (
+          <></>
+        ) : (
+          <div className={styles.Button}>
+            <button className={styles.allButton}>добавить отзыв</button>
+          </div>
+        )}
       </div>
     </div>
   );

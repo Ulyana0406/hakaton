@@ -5,47 +5,65 @@
 .userInfo {
   margin-top: 50px;
   display: flex;
-  justify-content: space-between;
+  gap: 150px;
+  font-family: 'bowler';
+  .userName1 {
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    color: rgba(20, 100, 246, 1);
+  }
+  .userName2 {
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    color: rgb(183, 60, 240);
+  }
 }
-.userName {
-}
-.userName1 {
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 600;
-  color: rgba(20, 100, 246, 1);
-}
-.userName2 {
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 600;
-  color: rgb(183, 60, 240);
-}
+
 .userUl {
   margin-top: 50px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  .userLi {
+    padding-bottom: 20px;
+    width: 430px;
+    border-bottom: 2px solid;
+    display: flex;
+    justify-content: space-between;
+    border-color: rgb(183, 60, 240);
+    
+  }
+  .userLi1 {
+    font-size: 23px;
+    font-style: normal;
+    font-weight: 600;
+  }
+  .userLi2 {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    color: gray;
+  }
 }
-.userLi {
-  padding-bottom: 20px;
-  width: 430px;
-  border-bottom: 2px solid;
-  display: flex;
-  justify-content: space-between;
-  border-color: rgb(183, 60, 240);
+.userAva {
+  width: 476px;
+  height: 458px;
+  border-radius: 30px;
+  position: relative;
+  z-index: 1;
+  background-image: url('/sqeer.png');
+  &::after {
+    content: "";
+    width: 625px;
+    height: 605px;
+    z-index: -1;
+    background-size: cover; /* This will ensure the image covers the entire pseudo-element */
+    background-position: center;
+  }
 }
-.userLi1 {
-  font-size: 20px;
-  font-style: normal;
-  font-weight: bold;
-}
-.userLi2 {
-  font-size: 20px;
-  font-style: normal;
-  font-weight: bold;
-  color: gray;
-}
+
 .myEvents {
 }
 .h2 {
@@ -55,13 +73,12 @@
   color: rgba(20, 100, 246, 1);
 }
 .lineH {
-  margin-top: 12px;
-  border: solid 8px;
-  width: 133px;
-  border-color: rgb(183, 60, 240);
+  margin-top: 10px;
+  border: solid 5px #D757F6;
+  width: 105px;
 }
 .myProjects {
-  margin-top: 70px;
+  margin-top: 150px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -83,6 +100,7 @@
   border-color: rgba(20, 100, 246, 1);
   background-image: url(./projects1.png);
   background-size: cover;
+  font-weight: 500;
 
   &Button {
     padding-left: 15px;
@@ -90,7 +108,6 @@
     color: rgba(20, 100, 246, 1);
     gap: 10px;
     background-color: white;
-    font-family: "Montserrat";
     font-weight: bold;
     font-size: 20px;
     width: 355px;
@@ -99,13 +116,28 @@
     border-radius: 0px 40px 30px 30px;
     border-color: rgba(20, 100, 246, 1);
     align-items: center;
+    &:hover {
+      padding-left: 30px;
+      display: flex;
+      color: white;
+      gap: 10px;
+      background-color: rgba(20, 100, 246, 1);
+      font-weight: bold;
+      font-size: 20px;
+      width: 355px;
+      height: 60px;
+      border: solid 2px;
+      border-radius: 0px 40px 30px 30px;
+      border-color: rgba(20, 100, 246, 1);
+      align-items: center;
+      cursor: pointer;
+    }
     &Start {
       padding-left: 30px;
       display: flex;
       color: white;
       gap: 10px;
       background-color: rgba(20, 100, 246, 1);
-      font-family: "Montserrat";
       font-weight: bold;
       font-size: 20px;
       width: 355px;

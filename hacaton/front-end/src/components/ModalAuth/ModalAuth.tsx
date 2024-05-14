@@ -2,6 +2,55 @@ import { useNavigate } from "react-router-dom";
 import styles from "./ModuleAuth.module.scss";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+
+interface University {
+  id: number;
+  name: string;
+}
+
+interface Speciality {
+  id: number;
+  name: string;
+}
+
+interface Project {
+  id: number;
+  title: string;
+}
+
+interface ExtraData {
+  university: University;
+  speciality: Speciality;
+}
+
+interface Publications{
+  id: number;
+  name: string;
+}
+
+interface Events{
+  id: number;
+  name: string;
+}
+
+interface UserData {
+  id: number;
+  type: number;
+  firstname: string;
+  secondname: string;
+  therename: string;
+  avatar: string;
+  extra_data: ExtraData;
+  projects: Project[];
+  publications: Publications[];
+  events: Events[];
+}
+
+interface AuthResponse{
+  result?: UserData;
+  message?: string;
+}
+
 const Modaly = ({
   isActive,
   setActive,
@@ -18,53 +67,69 @@ const Modaly = ({
     }
   }, [isActive, location]);
 
-  const [user_login, setLogin] = useState("");
-  const [user_password, setPassword] = useState("");
+  const [login, setLogin] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  // const csrftoken = getCookie("csrftoken");
+
   const handleLogin = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    // console.log(password, login);
-    const response = await fetch(
-      "https://itis-projects.ivgpu.ru/api/profiles/item",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ user_login, user_password }),
-      }
-    );
+    try{
+      const responseLogin = await fetch(
+        "/api/profiles/item",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ 
+            user_login: login, 
+            user_password: password 
+          }),
+        }
+      );
 
-    const data = await response.json();
-    console.log(data);
-    if (response.ok) {
-      console.log("Login successful", data);
-      navigate("/userpage");
-      if (isActive) {
-        setActive(false);
+      const dataLogin: AuthResponse = await responseLogin.json();
+      if (responseLogin.ok && dataLogin.result) {
+        const responseProfile = await fetch(
+          "/api/profiles/item?full_info=yes",{
+            method: 'GET',
+          }
+        )
+        const dataProfile: AuthResponse = await responseProfile.json();
+        console.log("Login successful", dataProfile);
+        localStorage.setItem('authData', JSON.stringify(dataProfile.result));
+        navigate("/userpage");
+        if (isActive) {
+          setActive(false);
+        }
+      } else {
+        console.error("Login failed", dataLogin.message);
+        if (dataLogin.message) {
+          console.log("Login failed", dataLogin.message);
+        } else {
+          console.log("Login failed: Unknown error occurred.");
+        }
       }
-    } else {
-      console.error();
-      console.log("Login failed", data.message);
+    } catch (error) {
+      console.error("Network or other error", error);
+      console.log("Network or other error", error.message || "No error message available.");
     }
   };
   return (
-    <dialog open={isActive} className={styles.dialog}>
-      <button
+    <dialog open={isActive} className={styles.container}>
+      <div className={styles.dialog}>
+      <div className={styles.modal}>
+        <h3 className={styles.enter}>Вход в систему</h3>
+        <button
         className={styles.closeButton}
         onClick={() => {
           setActive(false);
         }}
-      >
-        <img src="cross.svg"></img>
-      </button>
-      <div className={styles.modal}>
-        <h3 className={styles.enter}>Вход в систему</h3>
+      />
         <div className={styles.inputDiv}>
           <label className={styles.label}>Логин</label>
           <input
-            value={user_login}
+            value={login}
             onChange={(e) => setLogin(e.target.value)}
             className={styles.input}
             type="text"
@@ -74,7 +139,7 @@ const Modaly = ({
         <div className={styles.inputDiv}>
           <label className={styles.label}>Пароль</label>
           <input
-            value={user_password}
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
             className={styles.input}
             type="text"
@@ -99,6 +164,7 @@ const Modaly = ({
           </div>
         </div>
       </div>
+    </div>
     </dialog>
   );
 };
