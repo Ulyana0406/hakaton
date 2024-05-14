@@ -1,42 +1,89 @@
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./Header.module.scss";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import Modaly from "../ModalAuth/ModalAuth";
 
-function Header() {
+interface AuthData {
+  result: {
+    firstname: string;
+    secondname: string;
+    avatar: string;
+  };
+}
+
+function Header()  {
   const navigate = useNavigate();
-  const redirectMain = () => {
+  const [isActive, setActive] = useState(false);
+  const storedData = localStorage.getItem("authData");
+  const authData: AuthData | null = storedData ? JSON.parse(storedData) : null;
+  const logout = () => {
+    localStorage.removeItem("authData");
     navigate("/");
   };
-  const [isActive, setActive] = useState(false);
-  const authData = JSON.parse(localStorage.getItem("authData"));
+
+  const redirectUserPage = () => {
+    navigate("/userpage");
+  };
   return (
     <>
+      <Modaly isActive={isActive} setActive={setActive} />
       <div className={styles.header}>
-        <Modaly isActive={isActive} setActive={setActive} />
-        <img onClick={redirectMain} src="ПолITех1.svg" alt="" />
-        <div className={styles.headerhrefs}>
-          <a className={styles.hrefs} href="events">
+        <img onClick={() => navigate("/")} src="ПолITех1.svg" alt="Home" />
+        <div className={styles.headerHrefs}>
+          <Link to="/events" className={styles.hrefs}>
             Мероприятия
-          </a>
-          <a className={styles.hrefs} href="createevent">
+          </Link>
+          <Link to="/coworking" className={styles.hrefs}>
             Coworking
-          </a>
+          </Link>
+          <Link to="/createevent" className={styles.hrefs}>
+            Бронирование
+          </Link>
+          <Link to="/events" className={styles.hrefs}>
+            Проекты
+          </Link>
+          <Link to="/converation" className={styles.hrefs}>
+            Конференции
+          </Link>
         </div>
+        {!authData ? (
         <div className={styles.headerButtons}>
-          {authData ? (
             <button
               onClick={() => setActive(true)}
-              className={styles.enterButton}
+              className={styles.exit}
             >
               Вход
             </button>
-          ) : (
-            <></>
-          )}
-
-          <button className={styles.registerButton}>Регистрация</button>
+            <button
+            onClick={() => setActive(true)}
+            className={styles.exit}
+          >
+            Регистрация
+          </button>
         </div>
+          ) : (
+          <div className={styles.headerButtons}>
+            <div onClick={redirectUserPage} className={styles.infouser}>
+              <img
+                className={styles.img}
+                src={authData.avatar}
+                alt={`${authData.firstname} ${authData.secondname}`}
+              />
+              <div
+                className={styles.name}
+              >{`${authData.firstname} ${authData.secondname}`}</div>
+              {/* <div
+                className={styles.firsname}
+              >{`${authData.firstname} ${authData.secondname}`}</div> */}
+              {/* <div onClick={() =>{
+                localStorage.removeItem("authData");
+                navigate("/");
+              }} className={styles.exit}>
+                Выход
+              </div> */}
+            </div>
+          </div>
+          )}
       </div>
     </>
   );

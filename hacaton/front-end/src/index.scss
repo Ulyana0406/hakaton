@@ -1,9 +1,31 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap");
+@import "https://fonts.fontstorage.com/import/bowler.css";
+@font-face {
+  font-family: 'BowlerHac';
+  src: url('./fonts/Bowler.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
 
+.montserrat-hac {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+// @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 html,
 body {
   margin: 0;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Montserrat";
+}
+
+p{
+  margin: 0;       /* Убираем внешние отступы */
+  padding: 0;      /* Убираем внутренние отступы */
+  font-size: 16px; /* Устанавливаем желаемый размер шрифта */
+  line-height: 1.5;/* Устанавливаем желаемую высоту строки */
+  color: #434343;     /* Устанавливаем цвет текста */
 }
 
 *,
@@ -11,6 +33,12 @@ body {
 *::before {
   box-sizing: border-box;
 }
+// button {
+//   font-family: "Inter";
+// }
+// text {
+//   font-family: "Inter";
+// }
 h1,
 h2,
 h3,
@@ -18,5 +46,5 @@ h4,
 h5,
 h6 {
   margin: 0;
+  font-family: "BowlerHac";
 }
-

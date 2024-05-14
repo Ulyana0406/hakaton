@@ -11,6 +11,12 @@ import CreateYourProject from "./components/CreateYourProject/CreateYourProject"
 import Projects from "./components/Projects/Projects";
 import CreateEvent from "./components/CreateEvent/CreateEvent";
 import User from "./components/User/User";
+import ModalEvent from "./components/ModalEvent/ModalEvent";
+import ConverationPage from "./components/ConverationPage/Converation";
+import CoworkingPage from "./components/CoworkingPage/CoworkingPage";
+import Projects_2 from "./components/Projects_2/Projects";
+import Projects_3 from "./components/Projects_3/Projects";
+import Projects_4 from "./components/Projects_4/Projects";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -37,8 +43,20 @@ const router = createBrowserRouter([
         element: <AboutProject />,
       },
       {
-        path: "projects",
+        path: "projects/1",
         element: <Projects />,
+      },
+      {
+        path: "projects/2",
+        element: <Projects_2 />,
+      },
+      {
+        path: "projects/3",
+        element: <Projects_3 />,
+      },
+      {
+        path: "projects/4",
+        element: <Projects_4 />,
       },
       {
         path: "createevent",
@@ -47,6 +65,18 @@ const router = createBrowserRouter([
       {
         path: "userpage",
         element: <User />,
+      },
+      {
+        path: "modalevent",
+        element: <ModalEvent />,
+      },
+      {
+        path: "converation",
+        element: <ConverationPage />,
+      },
+      {
+        path: "coworking",
+        element: <CoworkingPage />,
       },
     ],
   },
