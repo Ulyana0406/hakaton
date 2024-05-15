@@ -59,7 +59,11 @@ class EventsDetailSerializer(serializers.ModelSerializer):
         user = instance.event_subscribers.filter(user=self.context['request'].user.profile)
         return bool(user)
     def get_isowner(self, instance:Event):
-        return instance.user == self.context['request'].user.profile
+        try:
+            return instance.user == self.context['request'].user.profile
+        except:
+            return False
+
     def get_avatar(self, instance:Event):
         try:
             return instance.avatar.url
@@ -89,7 +93,10 @@ class EventsSerializer(serializers.ModelSerializer):
     issub = serializers.SerializerMethodField()
     type_event = TypeEventsSerializer()
     def get_issub(self, instance:Event):
-        user = instance.event_subscribers.filter(user=self.context['request'].user.profile)
+        try:
+            user = instance.event_subscribers.filter(user=self.context['request'].user.profile)
+        except:
+            user = 0
         return bool(user)
     
     class Meta:
