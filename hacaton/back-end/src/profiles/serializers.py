@@ -39,9 +39,19 @@ class UniversitySerializer(serializers.ModelSerializer):
         model = Universitys
         fields = ['id', 'name']
 
+class PositionSerializer(serializers.ModelSerializer):
+    class Meta: 
+        model = Teachers
+        fields = ['id', 'position']
+
 class SpecialitySerializer(serializers.ModelSerializer):
     class Meta: 
         model = Specialitys
+        fields = ['id', 'name']
+
+class DepartamentSerializer(serializers.ModelSerializer):
+    class Meta: 
+        model = Departament
         fields = ['id', 'name']
 
 class StudentsSerializer(serializers.ModelSerializer):
@@ -75,9 +85,12 @@ class BusinesesSerializer(serializers.ModelSerializer):
         project = instance.profile.project_subscribers.all()
         return ProjectsSerializer(project, many=True).data   
 class TeachersSerializer(serializers.ModelSerializer):
+    university = UniversitySerializer()
     publications = serializers.SerializerMethodField()
     projects = serializers.SerializerMethodField()
     events = serializers.SerializerMethodField()
+    department = DepartamentSerializer()
+    #position = PositionSerializer()
     class Meta:
         model = Teachers
         fields = ('university', 'department', 'position', 'publications', 'events', 'projects')
