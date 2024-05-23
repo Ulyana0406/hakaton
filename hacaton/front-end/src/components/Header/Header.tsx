@@ -28,7 +28,7 @@ function Header()  {
     <>
       <Modaly isActive={isActive} setActive={setActive} />
       <div className={styles.header}>
-        <img onClick={() => navigate("/")} src="ПолITех1.svg" alt="Home" />
+        <img onClick={() => navigate("/")} src="БИМ.svg" alt="Home" />
         <div className={styles.headerHrefs}>
           <Link to="/events" className={styles.hrefs}>
             Мероприятия
@@ -39,7 +39,7 @@ function Header()  {
           <Link to="/createevent" className={styles.hrefs}>
             Бронирование
           </Link>
-          <Link to="/events" className={styles.hrefs}>
+          <Link to="/projects" className={styles.hrefs}>
             Проекты
           </Link>
           <Link to="/converation" className={styles.hrefs}>

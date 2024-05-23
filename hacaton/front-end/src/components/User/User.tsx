@@ -49,7 +49,9 @@ const User = () => {
   return (
     <div className={styles.user}>
       <div className={styles.userInfo}>
-        <img className={styles.userAva} src={authData.avatar} alt="" />
+        <div className={styles.blockavatar}>
+          <img className={styles.userAva} src={authData.avatar} alt="" />
+        </div>
         <div className={styles.userName}>
           <div className={styles.userName2}>
             {authData.firstname}{" "}
@@ -64,10 +66,21 @@ const User = () => {
               </div>
             </div>
             <div className={styles.userLi}>
-              <div className={styles.userLi1}>Специальность</div>
-              <div className={styles.userLi2}>
-                {authData.extra_data.speciality.name}
-              </div>
+                {authData.type === 0 ? (
+                  <>
+                    <div className={styles.userLi1}>Специальность</div>
+                    <div className={styles.userLi2}>
+                      {authData.extra_data.speciality.name}
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className={styles.userLi1}>Кафедра</div>
+                    <div className={styles.userLi2}>
+                      {authData.extra_data.department.name}
+                    </div>
+                  </>
+                )}
             </div>
             <div className={styles.userLi}>
               <div className={styles.userLi1}>Проекты</div>

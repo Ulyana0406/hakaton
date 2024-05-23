@@ -7,6 +7,27 @@
   display: flex;
   gap: 150px;
   font-family: 'bowler';
+  .blockavatar{
+    width: 476px;
+    height: 458px;
+    background-image: url('/sqeer.png');
+    background-size: cover;
+    .userAva {
+      border-radius: 30px;
+      position: relative;
+      z-index: 1;
+      width: 80%;
+      margin: 55px;
+      // &::after {
+      //   content: "";
+      //   width: 625px;
+      //   height: 605px;
+      //   z-index: -1;
+      //   background-size: cover; /* This will ensure the image covers the entire pseudo-element */
+      //   background-position: center;
+      // }
+    }
+  }
   .userName1 {
     font-size: 40px;
     font-style: normal;
@@ -45,22 +66,6 @@
     font-style: normal;
     font-weight: 600;
     color: gray;
-  }
-}
-.userAva {
-  width: 476px;
-  height: 458px;
-  border-radius: 30px;
-  position: relative;
-  z-index: 1;
-  background-image: url('/sqeer.png');
-  &::after {
-    content: "";
-    width: 625px;
-    height: 605px;
-    z-index: -1;
-    background-size: cover; /* This will ensure the image covers the entire pseudo-element */
-    background-position: center;
   }
 }
 

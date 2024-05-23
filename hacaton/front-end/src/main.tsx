@@ -17,6 +17,7 @@ import CoworkingPage from "./components/CoworkingPage/CoworkingPage";
 import Projects_2 from "./components/Projects_2/Projects";
 import Projects_3 from "./components/Projects_3/Projects";
 import Projects_4 from "./components/Projects_4/Projects";
+import ProjectsPage from "./components/ProjectList/ProjectsPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: "aboutproject",
         element: <AboutProject />,
+      },
+      {
+        path: "projects",
+        element: <ProjectsPage />,
       },
       {
         path: "projects/1",

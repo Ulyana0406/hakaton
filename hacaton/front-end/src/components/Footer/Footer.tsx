@@ -18,9 +18,9 @@ function Footer() {
     <div className={styles.footer}>
       <div className={styles.container}>
       <Modaly isActive={isActive} setActive={setActive} />
-        <img onClick={redirectMain} src="ПолITех.svg" alt="" className={styles.logo}/>
+        <img onClick={redirectMain} src="БИМ_F.svg" alt="" className={styles.logo}/>
         <div className={styles.headerHrefs}>
-          <Link to="/events" className={styles.hrefs}>
+        <Link to="/events" className={styles.hrefs}>
             Мероприятия
           </Link>
           <Link to="/coworking" className={styles.hrefs}>
@@ -29,7 +29,7 @@ function Footer() {
           <Link to="/createevent" className={styles.hrefs}>
             Бронирование
           </Link>
-          <Link to="/events" className={styles.hrefs}>
+          <Link to="/projects" className={styles.hrefs}>
             Проекты
           </Link>
           <Link to="/converation" className={styles.hrefs}>
